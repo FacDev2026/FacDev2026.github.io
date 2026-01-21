@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symposium on Faculty Development for Future-Ready Teaching and Learning</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* NYCU Color Palette & Theme */
+            --primary-color: #0033A0; /* NYCU Deep Blue */
+            --secondary-color: #8A8D8F; /* NYCU Silver */
+            --accent-color: #0dcaf0; /* Cyan for 'Future' vibe highlight */
+            --light-bg: #f8f9fa;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            /* FIX: Prevents fixed navbar from covering section titles on click */
+            scroll-padding-top: 90px; 
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: #333;
+            background-color: #ffffff;
+            padding-top: 70px; /* Offset for fixed navbar */
+        }
+
+        /* TBD Highlight for Discussion */
+        .tbd-discussion {
+            background-color: #fff3cd;
+            border: 2px dashed #dc3545;
+            color: #856404;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .tbd-discussion::after {
+            content: " (TBD)";
+            font-size: 0.7em;
+            color: #dc3545;
+            vertical-align: super;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #001a5a 100%);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #cfd1d3;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .info-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            background: white;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .date-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Program / Schedule Styling - UPDATED COLORS */
+        .nav-pills .nav-link {
+            color: var(--secondary-color);
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 10px 30px;
+            margin: 0 5px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background-color: #f0f0f0;
+            color: var(--primary-color);
+        }
+
+        /* FIX: Active state colors for better visibility */
+        .nav-pills .nav-link.active {
+            background-color: var(--accent-color) !important; /* Cyan background */
+            color: var(--primary-color) !important; /* Dark Blue Text */
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(13, 202, 240, 0.3);
+        }
+
+        .schedule-table {
+            border-collapse: separate;
+            border-spacing: 0 15px;
+            width: 100%;
+        }
+        
+        .schedule-row {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .schedule-row:hover {
+            transform: scale(1.005);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .time-col {
+            font-weight: 700;
+            color: var(--primary-color);
+            white-space: nowrap;
+            vertical-align: middle;
+            border-radius: 10px 0 0 10px;
+            padding: 25px !important;
+            width: 160px;
+            border-left: 5px solid var(--accent-color);
+            background-color: #fcfcfc;
+        }
+
+        .content-col {
+            vertical-align: middle;
+            padding: 20px 25px !important;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .track-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 600;
+        }
+
+        /* Topic List */
+        .topic-item {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        .topic-item h5 {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.4rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #444 !important;
+            margin: 0 10px;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: all 0.3s;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+        
+        .btn-outline-light {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Spacing for Traffic Section */
+        #traffic {
+            scroll-margin-top: 100px; /* Ensures jump doesn't hide title */
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                Future-Ready Teaching and Learning
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#dates">Dates</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#abstracts">Call for Abstracts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#program">Program</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#registration">Registration</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <span class="badge bg-info text-dark mb-3 px-3 py-2 rounded-pill">May 25-26, 2026</span>
+                    <h1 class="hero-title display-4">Symposium on Faculty Development for Future-Ready Teaching and Learning</h1>
+                    <p class="hero-subtitle">Theme: Human-Centered Teaching and Learning in a Digital World</p>
+                    <p class="lead mb-5" style="opacity: 0.9;">Join us in exploring the future of education.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#dates" class="btn btn-primary-custom">View Dates</a>
+                        <a href="#registration" class="btn btn-outline-light rounded-pill px-4 py-2">Registration</a>
+                        <a href="" class="btn btn-outline-light rounded-pill px-4 py-2">Download Flyer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-white pb-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="p-5 bg-light rounded-4 border-start border-5 border-primary shadow-sm">
+                        <h3 class="fw-bold mb-3 text-primary">About the Symposium</h3>
+                        <p class="lead mb-0">
+                           Hosted by National Yang Ming Chiao Tung University, this international gathering addresses the urgent need for higher education to evolve in the face of rapid technological change. We invite educators, researchers, and administrators from around the world to explore the critical intersection of <b>generative AI integration</b>, <b>high-impact pedagogies</b>, and <b>mentorship excellence</b>. Through interactive workshops and expert-led sessions, participants will gain practical strategies to enhance student learning and faculty development. This symposium serves as a vital platform for fostering global collaboration and equipping the academic community with the tools needed to be truly future-ready.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dates" class="bg-white">
+        <div class="container">
+            <h2 class="section-title">Important Dates</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="info-card p-4 text-center h-100 border-start border-5 border-info">
+                        <div class="date-badge mb-3">2026/03/15</div>
+                        <h5 class="fw-bold">Submission Deadline</h5>
+                        <p class="text-secondary small">Submit your papers early!</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card p-4 text-center h-100">
+                        <div class="date-badge mb-3">Rolling</div>
+                        <h5 class="fw-bold">Notification</h5>
+                        <p class="text-secondary small">The earlier you submit, the sooner you receive notification.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card p-4 text-center h-100 border-start border-5 border-primary">
+                        <div class="date-badge mb-3">2026/03/30</div>
+                        <h5 class="fw-bold">Early Bird Reg.</h5>
+                        <p class="text-secondary small">Deadline for discounted rates.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card p-4 text-center h-100">
+                        <div class="date-badge mb-3">2026/05/08</div>
+                        <h5 class="fw-bold">Registration Deadline</h5>
+                        <p class="text-secondary small">Final day to register.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="abstracts" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Call for Abstracts & Submission</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h4 class="mb-4 fw-bold">Included Topics</h4>
+                    <p class="text-muted mb-4">We cordially invite educators, researchers, and faculty developers to submit abstracts for the Symposium on Faculty Development for Future-Ready Teaching and Learning. We welcome contributions focusing on both empirical research and innovative teaching practices. To help shape the future of education, we encourage proposals addressing the following themes:</p>
+                    
+                    <div class="topic-item">
+                        <h5>AI Integration</h5>
+                        <p class="mb-0 text-secondary">Exploring generative AI tools and their impact on teaching and learning.</p>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <h5>Human-Centered Learning</h5>
+                        <p class="mb-0 text-secondary">Maintaining focus on student learning and faculty growth including mentoring.</p>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <h5>Digital Transformation</h5>
+                        <p class="mb-0 text-secondary">Leveraging technology for enhanced learning experiences.</p>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <h5>Faculty and Institutional Development</h5>
+                        <p class="mb-0 text-secondary">Building capacity for continuous innovation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                    <div class="info-card p-5 border shadow-sm">
+                        <i class="fas fa-file-upload fa-3x text-primary mb-3"></i>
+                        <h4 class="fw-bold">Submit Your Abstract</h4>
+                        <p class="text-muted small">Please use the Abstract Template and follow the guidelines.</p>
+                        
+                        <div class="d-grid gap-2 col-10 mx-auto">
+                            <a href="https://cmt3.research.microsoft.com/FacDev2026" target="_blank" class="btn btn-primary rounded-pill px-4">Submit Now</a>
+                            <p class="text-muted small mb-0">via the Microsoft CMT system</p>
+                            
+                            <a href="Abstract_Template_FacDev2026.docx" target="_blank" class="btn btn-outline-primary rounded-pill py-2 mt-2">
+                                <i class="fas fa-file-download me-2"></i>Download Abstract Template
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="bg-white">
+        <div class="container">
+            <h2 class="section-title">Program (Working Draft)</h2>
+            
+            <ul class="nav nav-pills justify-content-center mb-5" id="programTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="day1-tab" data-bs-toggle="pill" data-bs-target="#day1" type="button" role="tab" aria-selected="true">Day 1 - May 25</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="day2-tab" data-bs-toggle="pill" data-bs-target="#day2" type="button" role="tab" aria-selected="false">Day 2 - May 26</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="programTabContent">
+                
+                <div class="tab-pane fade show active" id="day1" role="tabpanel">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <table class="table schedule-table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th style="width:160px"></th>
+                                        <th>Track A / Main Event</th>
+                                        <th>Track B / Parallel Session</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">08:00 - 09:00</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Registration</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">09:00 - 09:15</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Welcome Remarks</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">09:35 - 10:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <span class="badge bg-primary mb-1">Keynote</span>
+                                            <h5 class="fw-bold mb-0">Plenary 1</h5>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">10:00 - 10:30</td>
+                                        <td class="content-col" colspan="2"><i class="fas fa-ellipsis-h text-muted"></i></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">10:30 - 10:45</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">10:30 - 12:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Workshop</span>
+                                            <h6 class="fw-bold">Workshop 1: Innovated Pedagogies</h6>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Parallel Talks</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>10:30-11:00:</strong> Talk</li>
+                                                <li class="mb-2"><strong>11:00-11:30:</strong> Talk</li>
+                                                <li class="mb-2"><strong>11:30-12:00:</strong> Talk</li>
+                                                <li><strong>12:00-12:30:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">12:30 - 13:00</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold mb-0"><i class="fas fa-utensils me-2"></i>Lunch</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">13:30 - 14:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <span class="badge bg-primary mb-1">Keynote</span>
+                                            <h5 class="fw-bold mb-0">Plenary 2</h5>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">14:00 - 14:30</td>
+                                        <td class="content-col" colspan="2"><i class="fas fa-ellipsis-h text-muted"></i></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">14:30 - 15:00</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">15:00 - 16:00</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Track A</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>15:00-15:30:</strong> Talk</li>
+                                                <li><strong>15:30-16:00:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Track B</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>15:00-15:30:</strong> Talk</li>
+                                                <li><strong>15:30-16:00:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">16:00 - 17:00</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Special Session</span>
+                                            <h6 class="fw-bold">Admin Round Table</h6>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Parallel Talks</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>16:00-16:30:</strong> Talk</li>
+                                                <li><strong>16:30-17:00:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">17:00 - 18:30</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Reception and Networking</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">18:30 - 20:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <h5 class="fw-bold mb-0 text-primary">VIP Dinner</h5>
+                                            <small class="text-muted">Location: The Ho Hotel</small>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="day2" role="tabpanel">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                             <table class="table schedule-table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th style="width:160px"></th>
+                                        <th>Track A / Main Event</th>
+                                        <th>Track B / Parallel Session</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">08:30 - 09:00</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Registration</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">09:00 - 10:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Workshop</span>
+                                            <h6 class="fw-bold">Mentorship Training WSK</h6>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Parallel Talks</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>09:00-09:30:</strong> Talk</li>
+                                                <li class="mb-2"><strong>09:30-10:00:</strong> Talk</li>
+                                                <li><strong>10:00-10:30:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">10:30 - 11:00</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Coffee Break</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">11:00 - 11:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <span class="badge bg-primary mb-1">Keynote</span>
+                                            <h5 class="fw-bold mb-0">Plenary 3</h5>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">11:30 - 12:30</td>
+                                        <td class="content-col" colspan="2"><i class="fas fa-ellipsis-h text-muted"></i></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">12:30 - 13:00</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold mb-0"><i class="fas fa-utensils me-2"></i>Lunch</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">13:30 - 15:00</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Track A</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>13:30-14:00:</strong> Talk</li>
+                                                <li class="mb-2"><strong>14:00-14:30:</strong> Talk</li>
+                                                <li><strong>14:30-15:00:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Track B</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>13:30-14:00:</strong> Talk</li>
+                                                <li class="mb-2"><strong>14:00-14:30:</strong> Talk</li>
+                                                <li><strong>14:30-15:00:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">15:00 - 15:30</td>
+                                        <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break</h6></td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">15:30 - 16:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Track A</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>15:30-16:00:</strong> Talk</li>
+                                                <li><strong>16:00-16:30:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Track B</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2"><strong>15:30-16:00:</strong> Talk</li>
+                                                <li><strong>16:00-16:30:</strong> Talk</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">16:30 - 17:00</td>
+                                        <td class="content-col" colspan="2"><h5 class="fw-bold mb-0">Closing</h5></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="registration" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Registration</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="p-5 text-center border rounded-4 bg-white">
+                        <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
+                        <h3 class="fw-bold mb-3">Registration Fees</h3>
+                        
+                        <div class="row justify-content-center mb-4 mt-4 g-3">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded-3 border border-2 border-primary position-relative">
+                                    <span class="badge bg-primary position-absolute top-0 start-50 translate-middle rounded-pill">Recommended</span>
+                                    <h6 class="fw-bold text-primary mb-2 mt-2">Early Bird / Author</h6>
+                                    <h2 class="fw-bold mb-0">$160 <span class="fs-6 text-muted fw-normal">USD</span></h2>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-white rounded-3 border">
+                                    <h6 class="fw-bold text-secondary mb-2 mt-2">Standard Rate</h6>
+                                    <h2 class="fw-bold mb-0 text-secondary">$200 <span class="fs-6 text-muted fw-normal">USD</span></h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <p class="text-uppercase text-muted fw-bold small mb-3" style="letter-spacing: 1px;">The registration fee covers</p>
+                            <div class="d-flex flex-wrap justify-content-center gap-2">
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small">
+                                    <i class="fas fa-chalkboard-user text-primary me-2"></i>Workshops
+                                </span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small">
+                                    <i class="fas fa-microphone-alt text-primary me-2"></i>All Talks
+                                </span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small">
+                                    <i class="fas fa-glass-cheers text-primary me-2"></i>Reception
+                                </span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small">
+                                    <i class="fas fa-utensils text-primary me-2"></i>Lunch (2 Days)
+                                </span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small">
+                                    <i class="fas fa-mug-hot text-primary me-2"></i>Coffee Breaks
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info d-inline-block text-start mb-4">
+                            <strong><i class="fas fa-calendar-check me-2"></i>Mark your calendar:</strong><br>
+                            Early Bird Deadline: March 30, 2026
+                        </div>
+                        
+                        <div>
+                            <a href="#" class="btn btn-secondary disabled rounded-pill px-4">Registration Coming Soon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="committee" class="bg-white">
+        <div class="container">
+            <h2 class="section-title">Steering Committee</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 col-lg-3">
+                    <div class="info-card p-4 text-center">
+                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
+                        <h6 class="fw-bold mb-1">Yong-Sheng Chen</h6>
+                        <small class="text-primary d-block mb-2">Dean of Academic Affairs</small>
+                        <small class="text-muted">NYCU</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="info-card p-4 text-center">
+                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
+                        <h6 class="fw-bold mb-1">Haydn Chen</h6>
+                        <small class="text-primary d-block mb-2">Chief Strategy Officer</small>
+                        <small class="text-muted">NYCU</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="info-card p-4 text-center">
+                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
+                        <h6 class="fw-bold mb-1">Spencer Benson</h6>
+                        <small class="text-primary d-block mb-2">Director</small>
+                        <small class="text-muted">EII Consulting</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="info-card p-4 text-center">
+                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
+                        <h6 class="fw-bold mb-1">Yi-Ju Tseng</h6>
+                        <small class="text-primary d-block mb-2">Director</small>
+                        <small class="text-muted">CTLD, NYCU</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="info-card p-4 text-center">
+                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
+                        <h6 class="fw-bold mb-1">Kuei-Yuan Chan</h6>
+                        <small class="text-primary d-block mb-2">Professor</small>
+                        <small class="text-muted">Mech. Eng., NTU</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="info-card p-4 text-center">
+                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
+                        <h6 class="fw-bold mb-1">Thresa Kwong</h6>
+                        <small class="text-primary d-block mb-2">Director</small>
+                        <small class="text-muted">CHTL, HKBU</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="info-card p-4 text-center">
+                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
+                        <h6 class="fw-bold mb-1">Gina Bonior</h6>
+                        <small class="text-primary d-block mb-2">Dean</small>
+                        <small class="text-muted">College of Edu., Silliman Univ.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venue" class="bg-light">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-6">
+                    <h2 class="section-title text-start mb-4">Venue</h2>
+                    <div class="info-card p-4 h-100 d-flex flex-column justify-content-center">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="mb-1 fw-bold">International Conference Hall</h4>
+                                <p class="text-muted mb-0">Guangfu Campus Library @ NYCU</p>
+                            </div>
+                        </div>
+                        <div class="ps-2 border-start border-4 border-info ms-3">
+                            <p class="text-secondary ms-3 mb-1">1001 University Road, Hsinchu, Taiwan 300093</p>
+                            <p class="text-secondary ms-3 small">(國立陽明交通大學 光復校區 浩然圖書館 國際會議廳)</p>
+                        </div>
+                        
+                        <div class="mt-4 ms-3">
+                             <a href="https://maps.app.goo.gl/daRAKeHWa4y21bGP9" target="_blank" class="btn btn-outline-primary rounded-pill">
+                                <i class="fas fa-location-arrow me-2"></i> Open in Google Maps
+                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h2 class="section-title text-start mb-4">Accommodation</h2>
+                    <div class="info-card p-4 h-100">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item border-0 px-0 pb-3">
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <h5 class="mb-1 fw-bold text-primary">THE HO HOTEL</h5>
+                                    <span class="badge bg-success bg-opacity-75 rounded-pill">Recommended</span>
+                                </div>
+                                <p class="mb-2 text-muted small">Close to venue, modern amenities.</p>
+                                <div class="d-flex align-items-center text-secondary small">
+                                    <i class="fas fa-walking me-2"></i> 10-15 mins walk
+                                </div>
+                                <a href="https://maps.app.goo.gl/VVzmMX9Jiir3W8HV8" target="_blank" class="small text-decoration-none mt-1 d-inline-block">View Map <i class="fas fa-external-link-alt small"></i></a>
+                            </div>
+                            
+                            <hr class="my-1 opacity-25">
+
+                            <div class="list-group-item border-0 px-0 pt-3">
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <h5 class="mb-1 fw-bold text-primary">EPISODE Hsinchu</h5>
+                                </div>
+                                <p class="mb-2 text-muted small">Alternative option, requires transport.</p>
+                                <div class="d-flex align-items-center text-secondary small">
+                                    <i class="fas fa-car me-2"></i> 15 mins taxi
+                                </div>
+                                <a href="https://maps.app.goo.gl/gMaBgJ75bJx3yDjU7" target="_blank" class="small text-decoration-none mt-1 d-inline-block">View Map <i class="fas fa-external-link-alt small"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-5" id="traffic">
+                <div class="col-12">
+                    <h2 class="section-title text-start mb-4"><i class="fas fa-route me-2"></i>Traffic Information</h2>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="info-card p-4 h-100 border-top border-4 border-secondary">
+                        <div class="mb-3 text-secondary"><i class="fas fa-train fa-2x"></i></div>
+                        <h5 class="fw-bold">TRA Train</h5>
+                        <p class="small text-muted mb-2">Hsinchu Station (新竹火車站)</p>
+                        <ul class="list-unstyled small mb-3">
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take <strong>Hsinchu Bus No. 2</strong> directly to NYCU.</li>
+                            <li><i class="fas fa-clock text-secondary me-1"></i>Bus Time: ~20-25 mins</li>
+                        </ul>
+                        <a href="http://www.hcbus.com.tw/big5/information-2.asp?select=2&button=%E9%80%81%E5%87%BA" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill w-100">
+                            <i class="fas fa-info-circle me-1"></i> Bus No.2 Info
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="info-card p-4 h-100 border-top border-4 border-warning">
+                        <div class="mb-3 text-warning"><i class="fas fa-subway fa-2x"></i></div>
+                        <h5 class="fw-bold">THSR</h5>
+                        <p class="small text-muted mb-2">Hsinchu Station (高鐵新竹站)</p>
+                        <ul class="list-unstyled small mb-3">
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take <strong>Kuo-Kuang Bus 182</strong>.</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Or take <strong>School Bus</strong> (shuttle).</li>
+                            <li><i class="fas fa-clock text-secondary me-1"></i>Travel Time: ~20-40 mins</li>
+                        </ul>
+                        <a href="https://www.nycu.edu.tw/userfiles/gaen/images/20241115134640873.jpg" target="_blank" class="btn btn-sm btn-outline-warning rounded-pill w-100 text-dark">
+                            <i class="fas fa-bus me-1"></i> School Bus Schedule
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="info-card p-4 h-100 border-top border-4 border-success">
+                        <div class="mb-3 text-success"><i class="fas fa-bus fa-2x"></i></div>
+                        <h5 class="fw-bold">Intercity Bus</h5>
+                        <p class="small text-muted mb-2">From Taipei (台北)</p>
+                        <ul class="list-unstyled small mb-3">
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i><strong>HowTai Bus (2011)</strong></li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i><strong>Kuo-Kuang Bus (1822)</strong></li>
+                            <li><i class="fas fa-map-pin text-secondary me-1"></i>Stop: NYCU Station</li>
+                        </ul>
+                        <a href="http://www.howtai.com.tw/LatestScheduleRun.aspx" target="_blank" class="btn btn-sm btn-outline-success rounded-pill w-100">
+                            <i class="fas fa-info-circle me-1"></i> HowTai Bus Info
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="info-card p-4 h-100 border-top border-4 border-info">
+                        <div class="mb-3 text-info"><i class="fas fa-taxi fa-2x"></i></div>
+                        <h5 class="fw-bold">Taxi/Rideshare</h5>
+                        <p class="small text-muted mb-2">Estimated Fare & Time</p>
+                        <ul class="list-unstyled small mb-0">
+                            <li class="mb-2 border-bottom pb-1">
+                                <strong>From THSR Station:</strong><br>
+                                ~20 mins / $300-350 TWD
+                            </li>
+                            <li>
+                                <strong>From TRA Station:</strong><br>
+                                ~15 mins / $250-300 TWD
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container text-center">
+            <h4 class="fw-bold mb-4">Contact Us</h4>
+            <div class="row justify-content-center text-start">
+                <div class="col-md-4 mb-4 border-end border-secondary">
+                    <h6 class="text-uppercase text-info mb-3">Program / Content</h6>
+                    <p class="mb-0">Symposium Organizing Team</p>
+                </div>
+                <div class="col-md-4 mb-4 border-end border-secondary">
+                    <h6 class="text-uppercase text-info mb-3">Logistics / Registration</h6>
+                    <p class="mb-0">Center for Teaching and Learning Development</p>
+                    <small class="text-white-50">National Yang Ming Chiao Tung University</small>
+                </div>
+                <div class="col-md-4 mb-4 ps-md-4">
+                    <h6 class="text-uppercase text-info mb-3">Sponsors</h6>
+                    <p class="mb-0">Education Innovations International Consulting, LLC</p>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary opacity-50">
+            <p class="small text-white-50 mb-0">© 2026 Symposium on Faculty Development for Future-Ready Teaching and Learning. All rights reserved.</p>
+            <p class="small text-white-50 mb-0">The Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.</p>
+            
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
