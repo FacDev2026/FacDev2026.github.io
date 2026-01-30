@@ -275,6 +275,72 @@
             color: white;
             padding: 60px 0;
         }
+        /* Member */
+        /* 委員會區塊容器 */
+/* 調整卡片整體大小與內距 */
+.member-info-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 20px; /* 圓角稍微調小更精悍 */
+    padding: 20px 15px; /* 原本是 30px，縮減內距 */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 100%;
+    max-width: 240px; /* 限制最大寬度防止在寬螢幕過寬 */
+    margin: 0 auto;
+}
+
+/* 調整照片容器尺寸 */
+.photo-wrapper {
+    position: relative;
+    width: 110px; /* 從 140px 縮小到 110px */
+    height: 110px;
+    margin: 0 auto 15px;
+}
+
+.member-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 22px; /* 配合容器大小微調圓角 */
+    object-fit: cover;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+/* 讓 Chair 標籤也小一點 */
+.chair-tag {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #005596;
+    color: #ffffff;
+    font-size: 0.6rem; /* 字體調小 */
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 3px 8px rgba(0, 85, 150, 0.3);
+    z-index: 2;
+}
+
+/* 調整字體大小 */
+.member-name {
+    color: #2d3436;
+    font-size: 1rem; /* 從 1.15rem 縮小 */
+    margin-bottom: 3px;
+}
+
+.member-title {
+    color: #005596;
+    font-size: 0.75rem; /* 從 0.85rem 縮小 */
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.member-org {
+    color: #636e72;
+    font-size: 0.7rem; /* 從 0.8rem 縮小 */
+}
     </style>
 </head>
 <body>
@@ -289,12 +355,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#dates">Dates</a></li>
                     <li class="nav-item"><a class="nav-link" href="#abstracts">Call for Abstracts</a></li>
                     <li class="nav-item"><a class="nav-link" href="#program">Program</a></li>
                     <li class="nav-item"><a class="nav-link" href="#registration">Registration</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#committee">Committee</a></li>
                     <li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -312,6 +377,7 @@
                     <p class="lead mb-5" style="opacity: 0.9;">Join us in exploring the future of education.</p>
                     <div class="d-flex justify-content-center gap-3">
                         <a href="#dates" class="btn btn-primary-custom">View Dates</a>
+                        <a href="#abstracts" class="btn btn-outline-light rounded-pill px-4 py-2">Submission</a>
                         <a href="#registration" class="btn btn-outline-light rounded-pill px-4 py-2">Registration</a>
                         <a href="" class="btn btn-outline-light rounded-pill px-4 py-2">Download Flyer</a>
                     </div>
@@ -673,13 +739,12 @@
 
                     <div class="alert alert-info d-inline-block text-start mb-4">
                         <strong><i class="fas fa-calendar-check me-2"></i>Mark your calendar:</strong><br>
-                        Early Bird Deadline: March 30, 2026
+                        Early Bird Deadline: April 15, 2026
                     </div>
                     
                     <div>
-                        <a href="#" class="btn btn-secondary disabled rounded-pill px-5 py-2">
-                            <i class="fas fa-lock me-2"></i>Registration Coming Soon
-                        </a>
+
+                        <a href="https://form.jotform.com/260258939599478" target="_blank" class="btn btn-primary rounded-pill px-4">Registration</a>
                     </div>
                 </div>
             </div>
@@ -687,70 +752,93 @@
     </div>
 </section>
     
-    
     <section id="committee" class="bg-white">
-        <div class="container">
-            <h2 class="section-title">Steering Committee</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-4 col-lg-3">
-                    <div class="info-card p-4 text-center">
-                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
-                        <h6 class="fw-bold mb-1">Yong-Sheng Chen</h6>
-                        <small class="text-primary d-block mb-2">Dean of Academic Affairs</small>
-                        <small class="text-muted">NYCU</small>
+    <div class="container">
+        <h2 class="section-title text-center fw-bold mb-5">Steering Committee</h2>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-4 col-lg-3">
+                <div class="member-info-card text-center">
+                    <div class="photo-wrapper">
+                        <img src="img/YSC.png" alt="Yong-Sheng Chen" class="member-photo">
+                        <div class="chair-tag">Chair</div>
                     </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="info-card p-4 text-center">
-                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
-                        <h6 class="fw-bold mb-1">Haydn Chen</h6>
-                        <small class="text-primary d-block mb-2">Chief Strategy Officer</small>
-                        <small class="text-muted">NYCU</small>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="info-card p-4 text-center">
-                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
-                        <h6 class="fw-bold mb-1">Spencer Benson</h6>
-                        <small class="text-primary d-block mb-2">Director</small>
-                        <small class="text-muted">EII Consulting</small>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="info-card p-4 text-center">
-                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
-                        <h6 class="fw-bold mb-1">Yi-Ju Tseng</h6>
-                        <small class="text-primary d-block mb-2">Director</small>
-                        <small class="text-muted">CTLD, NYCU</small>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="info-card p-4 text-center">
-                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
-                        <h6 class="fw-bold mb-1">Kuei-Yuan Chan</h6>
-                        <small class="text-primary d-block mb-2">Professor</small>
-                        <small class="text-muted">Mech. Eng., NTU</small>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="info-card p-4 text-center">
-                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
-                        <h6 class="fw-bold mb-1">Thresa Kwong</h6>
-                        <small class="text-primary d-block mb-2">Director</small>
-                        <small class="text-muted">CHTL, HKBU</small>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="info-card p-4 text-center">
-                        <div class="mb-3"><i class="fas fa-user-circle fa-2x text-secondary opacity-25"></i></div>
-                        <h6 class="fw-bold mb-1">Gina Bonior</h6>
-                        <small class="text-primary d-block mb-2">Dean</small>
-                        <small class="text-muted">College of Edu., Silliman Univ.</small>
-                    </div>
+                    <h5 class="fw-bold member-name">Yong-Sheng Chen</h5>
+                    <p class="member-title mb-1">Dean of Academic Affairs</p>
+                    <p class="member-org mb-0">NYCU</p>
                 </div>
             </div>
+
+            <div class="col-md-4 col-lg-3">
+                <div class="member-info-card text-center">
+                    <div class="photo-wrapper">
+                        <img src="img/HDC.jpg" alt="Haydn Chen" class="member-photo">
+                    </div>
+                    <h5 class="fw-bold member-name">Haydn Chen</h5>
+                    <p class="member-title mb-1">Chief Strategy Officer</p>
+                    <p class="member-org mb-0">NYCU</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3">
+                <div class="member-info-card text-center">
+                    <div class="photo-wrapper">
+                        <img src="img/SB.png" alt="Spencer Benson" class="member-photo">
+                    </div>
+                    <h5 class="fw-bold member-name">Spencer Benson</h5>
+                    <p class="member-title mb-1">Director</p>
+                    <p class="member-org mb-0">EII Consulting</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3">
+                <div class="member-info-card text-center">
+                    <div class="photo-wrapper">
+                        <img src="https://yjtseng.info/images/YJTseng.small.jpg" alt="Yi-Ju Tseng" class="member-photo">
+                    </div>
+                    <h5 class="fw-bold member-name">Yi-Ju Tseng</h5>
+                    <p class="member-title mb-1">Director</p>
+                    <p class="member-org mb-0">CTLD, NYCU</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3">
+                <div class="member-info-card text-center">
+                    <div class="photo-wrapper">
+                        <img src="img/KYC.jpg" alt="Kuei-Yuan Chan" class="member-photo">
+                    </div>
+                    <h5 class="fw-bold member-name">Kuei-Yuan Chan</h5>
+                    <p class="member-title mb-1">Professor</p>
+                    <p class="member-org mb-0">Mech. Eng., NTU</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3">
+                <div class="member-info-card text-center">
+                    <div class="photo-wrapper">
+                        <img src="img/TK.jpg" alt="Theresa Kwong" class="member-photo">
+                    </div>
+                    <h5 class="fw-bold member-name">Theresa Kwong</h5>
+                    <p class="member-title mb-1">Director</p>
+                    <p class="member-org mb-0">CHTL, HKBU</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3">
+                <div class="member-info-card text-center">
+                    <div class="photo-wrapper">
+                        <img src="img/GB.jpeg" alt="Gina Bonior" class="member-photo">
+                    </div>
+                    <h5 class="fw-bold member-name">Gina Bonior</h5>
+                    <p class="member-title mb-1">Dean</p>
+                    <p class="member-org mb-0">College of Edu., Silliman Univ.</p>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+   
 
     <section id="venue" class="bg-light">
         <div class="container">
