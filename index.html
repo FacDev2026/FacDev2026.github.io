@@ -277,6 +277,31 @@
         }
         /* Member */
         /* 委員會區塊容器 */
+        /* 基礎卡片樣式 */
+.member-info-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 20px;
+    padding: 20px 15px;
+    /* 這裡的 transition 是平滑移動的關鍵 */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+}
+
+/* 滑鼠懸停 (Hover) 的動作：向上浮起並增加陰影 */
+.member-info-card:hover {
+    transform: translateY(-8px); /* 向上移動 8px */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); /* 增加柔和陰影 */
+    border-color: rgba(0, 85, 150, 0.2); /* 邊框顏色稍微加深 */
+}
+
+/* 如果希望照片也跟著微動，可以加這段 */
+.member-info-card:hover .member-photo {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
 /* 調整卡片整體大小與內距 */
 .member-info-card {
     background: #ffffff;
@@ -341,6 +366,45 @@
     color: #636e72;
     font-size: 0.7rem; /* 從 0.8rem 縮小 */
 }
+/* 自定義下載按鈕樣式 */
+.btn-flyer {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 8px 20px 8px 8px; /* 左側留空間給圓圈 */
+    border-radius: 50px;
+    color: #005596;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid rgba(0, 85, 150, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.icon-circle {
+    width: 36px;
+    height: 36px;
+    background: #005596;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    transition: transform 0.3s ease;
+}
+
+.btn-flyer:hover {
+    color: #005596;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 85, 150, 0.15);
+    border-color: #005596;
+}
+
+.btn-flyer:hover .icon-circle {
+    transform: rotate(-10deg) scale(1.1);
+}
     </style>
 </head>
 <body>
@@ -376,10 +440,8 @@
                     <p class="hero-subtitle">Human-Centered and Open Education: Teaching and Learning in a Digital World</p>
                     <p class="lead mb-5" style="opacity: 0.9;">Join us in exploring the future of education.</p>
                     <div class="d-flex justify-content-center gap-3">
-                        <a href="#dates" class="btn btn-primary-custom">View Dates</a>
-                        <a href="#abstracts" class="btn btn-outline-light rounded-pill px-4 py-2">Submission</a>
+                        <a href="#abstracts" class="btn btn-primary-custom">Submission</a>
                         <a href="#registration" class="btn btn-outline-light rounded-pill px-4 py-2">Registration</a>
-                        <a href="" class="btn btn-outline-light rounded-pill px-4 py-2">Download Flyer</a>
                     </div>
                 </div>
             </div>
@@ -387,19 +449,29 @@
     </section>
 
     <section id="about" class="bg-white pb-0">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="p-5 bg-light rounded-4 border-start border-5 border-primary shadow-sm">
-                        <h3 class="fw-bold mb-3 text-primary">About the Symposium</h3>
-                        <p class="lead mb-0">
-                           Organized by the Taiwan Open Course and Education Consortium (<a href="https://www.tocec.org.tw/web/index.jsp" target="_blank">TOCEC</a>) and hosted by the Center for Teaching and Learning Development at National Yang Ming Chiao Tung University (<a href="https://www.nycu.edu.tw/nycu/en/index" target="_blank">NYCU</a>), this international gathering addresses the theme of "<b>Human-Centered Teaching and Learning in an Open Education and Digital World.</b>" We invite educators, researchers, and administrators from around the world to explore the critical intersection of generative AI integration, digital transformation, and mentorship excellence. Through expert-led sessions and global collaboration, participants will gain practical strategies to enhance student learning, promote open education, and foster faculty development, equipping the academic community with the tools needed to be truly future-ready.
-                        </p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="p-5 bg-light rounded-4 border-start border-5 border-primary shadow-sm position-relative">
+                    <h3 class="fw-bold mb-4 text-primary">About the Symposium</h3>
+                    
+                    <p class="lead mb-4">
+                       Organized by the Taiwan Open Course and Education Consortium (<a href="https://www.tocec.org.tw/web/index.jsp" target="_blank">TOCEC</a>) and hosted by the Center for Teaching and Learning Development at National Yang Ming Chiao Tung University (<a href="https://www.nycu.edu.tw/nycu/en/index" target="_blank">NYCU</a>), this international gathering addresses the theme of "<b>Human-Centered Teaching and Learning in an Open Education and Digital World.</b>" We invite educators, researchers, and administrators from around the world to explore the critical intersection of generative AI integration, digital transformation, and mentorship excellence. Through expert-led sessions and global collaboration, participants will gain practical strategies to enhance student learning, promote open education, and foster faculty development, equipping the academic community with the tools needed to be truly future-ready.
+                    </p>
+
+                    <div class="d-flex justify-content-md-end justify-content-center mt-4">
+                        <a href="" class="btn-flyer" target="_blank">
+                            <span class="icon-circle">
+                                <i class="fas fa-file-download"></i>
+                            </span>
+                            <span class="text-label">Event Flyer</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="dates" class="bg-white">
         <div class="container">
