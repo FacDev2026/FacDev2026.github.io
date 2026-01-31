@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,27 +8,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+
     <style>
         :root {
             /* NYCU Color Palette & Theme */
-            --primary-color: #0033A0; /* NYCU Deep Blue */
-            --secondary-color: #8A8D8F; /* NYCU Silver */
-            --accent-color: #0dcaf0; /* Cyan for 'Future' vibe highlight */
+            --primary-color: #0033A0;
+            /* NYCU Deep Blue */
+            --secondary-color: #8A8D8F;
+            /* NYCU Silver */
+            --accent-color: #0dcaf0;
+            /* Cyan for 'Future' vibe highlight */
             --light-bg: #f8f9fa;
         }
-        
+
         html {
             scroll-behavior: smooth;
             /* FIX: Prevents fixed navbar from covering section titles on click */
-            scroll-padding-top: 90px; 
+            scroll-padding-top: 90px;
         }
 
         body {
             font-family: 'Outfit', sans-serif;
             color: #333;
             background-color: #ffffff;
-            padding-top: 70px; /* Offset for fixed navbar */
+            padding-top: 70px;
+            /* Offset for fixed navbar */
         }
 
         /* TBD Highlight for Discussion */
@@ -41,7 +46,7 @@
             font-weight: bold;
             display: inline-block;
         }
-        
+
         .tbd-discussion::after {
             content: " (TBD)";
             font-size: 0.7em;
@@ -58,21 +63,33 @@
             color: white;
             overflow: hidden;
         }
+
         .hero-section .btn {
-    display: inline-flex;    /* 使用 flex 布局 */
-    align-items: center;     /* 垂直居中 */
-    justify-content: center; /* 水平居中 */
-    height: 50px;            /* 固定高度是確保對齊最簡單的方法 */
-    padding: 0 30px;         /* 左右內距 */
-    border-radius: 30px;     /* 圓角 */
-    font-weight: 600;
-    transition: all 0.3s;
-    line-height: 1;          /* 將行高設為 1，避免字體基準線偏移 */
-}
+            display: inline-flex;
+            /* 使用 flex 布局 */
+            align-items: center;
+            /* 垂直居中 */
+            justify-content: center;
+            /* 水平居中 */
+            height: 50px;
+            /* 固定高度是確保對齊最簡單的方法 */
+            padding: 0 30px;
+            /* 左右內距 */
+            border-radius: 30px;
+            /* 圓角 */
+            font-weight: 600;
+            transition: all 0.3s;
+            line-height: 1;
+            /* 將行高設為 1，避免字體基準線偏移 */
+        }
+
         .hero-section::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: url('https://www.transparenttextures.com/patterns/cubes.png');
             opacity: 0.1;
             z-index: 0;
@@ -86,7 +103,7 @@
         .hero-title {
             font-weight: 700;
             margin-bottom: 20px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero-subtitle {
@@ -110,7 +127,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         .section-title::after {
             content: '';
             display: block;
@@ -125,7 +142,7 @@
         .info-card {
             border: none;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             background: white;
@@ -134,7 +151,7 @@
 
         .info-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .date-badge {
@@ -157,7 +174,7 @@
             border: 1px solid transparent;
             transition: all 0.3s ease;
         }
-        
+
         .nav-pills .nav-link:hover {
             background-color: #f0f0f0;
             color: var(--primary-color);
@@ -165,8 +182,10 @@
 
         /* FIX: Active state colors for better visibility */
         .nav-pills .nav-link.active {
-            background-color: var(--accent-color) !important; /* Cyan background */
-            color: var(--primary-color) !important; /* Dark Blue Text */
+            background-color: var(--accent-color) !important;
+            /* Cyan background */
+            color: var(--primary-color) !important;
+            /* Dark Blue Text */
             font-weight: 700;
             box-shadow: 0 4px 10px rgba(13, 202, 240, 0.3);
         }
@@ -176,17 +195,17 @@
             border-spacing: 0 15px;
             width: 100%;
         }
-        
+
         .schedule-row {
             background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
             border-radius: 10px;
             transition: transform 0.2s;
         }
-        
+
         .schedule-row:hover {
             transform: scale(1.005);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
         }
 
         .time-col {
@@ -206,7 +225,7 @@
             padding: 20px 25px !important;
             border-radius: 0 10px 10px 0;
         }
-        
+
         .track-label {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -223,6 +242,7 @@
             padding-left: 20px;
             margin-bottom: 25px;
         }
+
         .topic-item h5 {
             color: var(--primary-color);
             font-weight: 700;
@@ -232,9 +252,9 @@
         .navbar {
             background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        
+
         .navbar-brand {
             font-weight: 700;
             color: var(--primary-color) !important;
@@ -246,59 +266,67 @@
             color: #444 !important;
             margin: 0 10px;
         }
-        
-        .nav-link:hover, .nav-link.active {
+
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--primary-color) !important;
         }
 
         .btn-primary-custom {
-    background-color: var(--accent-color);
-    border: none;
-    color: var(--primary-color);
-    position: relative;
-    z-index: 10;
-}
+            background-color: var(--accent-color);
+            border: none;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 10;
+        }
 
-.btn-primary-custom:hover {
-    background-color: white;
-    color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(255,255,255,0.5);
-}
-        
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
         .btn-outline-light {
             position: relative;
             z-index: 10;
         }
+
         /* 針對 Registration 按鈕的額外微調 */
-.btn-reg-outline {
-    border: 2px solid white !important; /* 稍微加粗邊框增加質感 */
-    color: white !important;
-    background: transparent;
-}
+        .btn-reg-outline {
+            border: 2px solid white !important;
+            /* 稍微加粗邊框增加質感 */
+            color: white !important;
+            background: transparent;
+        }
 
-.btn-reg-outline:hover {
-    background: white !important;
-    color: var(--primary-color) !important;
-}
+        .btn-reg-outline:hover {
+            background: white !important;
+            color: var(--primary-color) !important;
+        }
+
         /* 強制按鈕內容垂直置中 */
-.btn-flex-center {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1; /* 移除行高造成的偏移 */
-    gap: 8px;       /* 自動設定圖示與文字間的間距 */
-}
+        .btn-flex-center {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            /* 移除行高造成的偏移 */
+            gap: 8px;
+            /* 自動設定圖示與文字間的間距 */
+        }
 
-/* 確保按鈕內部的 i 標籤（Icon）沒有額外的 margin 影響位置 */
-.btn-flex-center i {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    display: flex;
-    align-items: center;
-}
+        /* 確保按鈕內部的 i 標籤（Icon）沒有額外的 margin 影響位置 */
+        .btn-flex-center i {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            display: flex;
+            align-items: center;
+        }
+
         /* Spacing for Traffic Section */
         #traffic {
-            scroll-margin-top: 100px; /* Ensures jump doesn't hide title */
+            scroll-margin-top: 100px;
+            /* Ensures jump doesn't hide title */
         }
 
         /* Footer */
@@ -307,159 +335,179 @@
             color: white;
             padding: 60px 0;
         }
+
         /* Member */
         /* 委員會區塊容器 */
         /* 基礎卡片樣式 */
-.member-info-card {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 20px;
-    padding: 20px 15px;
-    /* 這裡的 transition 是平滑移動的關鍵 */
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    height: 100%;
-    max-width: 240px;
-    margin: 0 auto;
-}
+        .member-info-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 20px 15px;
+            /* 這裡的 transition 是平滑移動的關鍵 */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+            max-width: 240px;
+            margin: 0 auto;
+        }
 
-/* 滑鼠懸停 (Hover) 的動作：向上浮起並增加陰影 */
-.member-info-card:hover {
-    transform: translateY(-8px); /* 向上移動 8px */
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); /* 增加柔和陰影 */
-    border-color: rgba(0, 85, 150, 0.2); /* 邊框顏色稍微加深 */
-}
+        /* 滑鼠懸停 (Hover) 的動作：向上浮起並增加陰影 */
+        .member-info-card:hover {
+            transform: translateY(-8px);
+            /* 向上移動 8px */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            /* 增加柔和陰影 */
+            border-color: rgba(0, 85, 150, 0.2);
+            /* 邊框顏色稍微加深 */
+        }
 
-/* 如果希望照片也跟著微動，可以加這段 */
-.member-info-card:hover .member-photo {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-}
-/* 調整卡片整體大小與內距 */
-.member-info-card {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 20px; /* 圓角稍微調小更精悍 */
-    padding: 20px 15px; /* 原本是 30px，縮減內距 */
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    height: 100%;
-    max-width: 240px; /* 限制最大寬度防止在寬螢幕過寬 */
-    margin: 0 auto;
-}
+        /* 如果希望照片也跟著微動，可以加這段 */
+        .member-info-card:hover .member-photo {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
 
-/* 調整照片容器尺寸 */
-.photo-wrapper {
-    position: relative;
-    width: 110px; /* 從 140px 縮小到 110px */
-    height: 110px;
-    margin: 0 auto 15px;
-}
+        /* 調整卡片整體大小與內距 */
+        .member-info-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            /* 圓角稍微調小更精悍 */
+            padding: 20px 15px;
+            /* 原本是 30px，縮減內距 */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+            max-width: 240px;
+            /* 限制最大寬度防止在寬螢幕過寬 */
+            margin: 0 auto;
+        }
 
-.member-photo {
-    width: 100%;
-    height: 100%;
-    border-radius: 22px; /* 配合容器大小微調圓角 */
-    object-fit: cover;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
-}
+        /* 調整照片容器尺寸 */
+        .photo-wrapper {
+            position: relative;
+            width: 110px;
+            /* 從 140px 縮小到 110px */
+            height: 110px;
+            margin: 0 auto 15px;
+        }
 
-/* 讓 Chair 標籤也小一點 */
-.chair-tag {
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #005596;
-    color: #ffffff;
-    font-size: 0.6rem; /* 字體調小 */
-    font-weight: 700;
-    padding: 3px 12px;
-    border-radius: 50px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 0 3px 8px rgba(0, 85, 150, 0.3);
-    z-index: 2;
-}
+        .member-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 22px;
+            /* 配合容器大小微調圓角 */
+            object-fit: cover;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
 
-/* 調整字體大小 */
-.member-name {
-    color: #2d3436;
-    font-size: 1rem; /* 從 1.15rem 縮小 */
-    margin-bottom: 3px;
-}
+        /* 讓 Chair 標籤也小一點 */
+        .chair-tag {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #005596;
+            color: #ffffff;
+            font-size: 0.6rem;
+            /* 字體調小 */
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 3px 8px rgba(0, 85, 150, 0.3);
+            z-index: 2;
+        }
 
-.member-title {
-    color: #005596;
-    font-size: 0.75rem; /* 從 0.85rem 縮小 */
-    font-weight: 600;
-    line-height: 1.2;
-}
+        /* 調整字體大小 */
+        .member-name {
+            color: #2d3436;
+            font-size: 1rem;
+            /* 從 1.15rem 縮小 */
+            margin-bottom: 3px;
+        }
 
-.member-org {
-    color: #636e72;
-    font-size: 0.7rem; /* 從 0.8rem 縮小 */
-}
-/* 自定義下載按鈕樣式 */
-.btn-flyer {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    background: #ffffff;
-    padding: 8px 20px 8px 8px; /* 左側留空間給圓圈 */
-    border-radius: 50px;
-    color: #005596;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: 1px solid rgba(0, 85, 150, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
+        .member-title {
+            color: #005596;
+            font-size: 0.75rem;
+            /* 從 0.85rem 縮小 */
+            font-weight: 600;
+            line-height: 1.2;
+        }
 
-.icon-circle {
-    width: 36px;
-    height: 36px;
-    background: #005596;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-    transition: transform 0.3s ease;
-}
+        .member-org {
+            color: #636e72;
+            font-size: 0.7rem;
+            /* 從 0.8rem 縮小 */
+        }
 
-.btn-flyer:hover {
-    color: #005596;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 85, 150, 0.15);
-    border-color: #005596;
-}
+        /* 自定義下載按鈕樣式 */
+        .btn-flyer {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 8px 20px 8px 8px;
+            /* 左側留空間給圓圈 */
+            border-radius: 50px;
+            color: #005596;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(0, 85, 150, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
 
-.btn-flyer:hover .icon-circle {
-    transform: rotate(-10deg) scale(1.1);
-}
-/* 確保在小螢幕上卡片高度能隨內容伸展 */
-@media (max-width: 991.98px) {
-    .info-card.h-100 {
-        height: auto !important;
-        min-height: 250px; /* 給予一個最小高度維持美觀，但不鎖死 */
-        margin-bottom: 20px;
-    }
-    
-    /* 修正 Venue 部分在手機上的間距 */
-    .section-title.text-start {
-        text-align: center !important;
-    }
-    .section-title.text-start::after {
-        margin: 15px auto 0 !important;
-    }
-}
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            background: #005596;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
 
-/* 針對 Accommodation 列表的微調 */
-.list-group-item {
-    background-color: transparent;
-}
+        .btn-flyer:hover {
+            color: #005596;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 85, 150, 0.15);
+            border-color: #005596;
+        }
+
+        .btn-flyer:hover .icon-circle {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        /* 確保在小螢幕上卡片高度能隨內容伸展 */
+        @media (max-width: 991.98px) {
+            .info-card.h-100 {
+                height: auto !important;
+                min-height: 250px;
+                /* 給予一個最小高度維持美觀，但不鎖死 */
+                margin-bottom: 20px;
+            }
+
+            /* 修正 Venue 部分在手機上的間距 */
+            .section-title.text-start {
+                text-align: center !important;
+            }
+
+            .section-title.text-start::after {
+                margin: 15px auto 0 !important;
+            }
+        }
+
+        /* 針對 Accommodation 列表的微調 */
+        .list-group-item {
+            background-color: transparent;
+        }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -478,7 +526,7 @@
                     <li class="nav-item"><a class="nav-link" href="#registration">Registration</a></li>
                     <li class="nav-item"><a class="nav-link" href="#committee">Committee</a></li>
                     <li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Organizers</a></li>
                 </ul>
             </div>
         </div>
@@ -489,8 +537,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <span class="badge bg-info text-dark mb-3 px-3 py-2 rounded-pill">May 25-26, 2026</span>
-                    <h1 class="hero-title display-4">Symposium on Faculty Development for Future-Ready Teaching and Learning</h1>
-                    <p class="hero-subtitle">Human-Centered and Open Education: Teaching and Learning in a Digital World</p>
+                    <h1 class="hero-title display-4">Symposium on Faculty Development for Future-Ready Teaching and
+                        Learning</h1>
+                    <p class="hero-subtitle">Human-Centered and Open Education: Teaching and Learning in a Digital World
+                    </p>
                     <p class="lead mb-5" style="opacity: 0.9;">Join us in exploring the future of education.</p>
                     <div class="d-flex justify-content-center gap-3">
                         <a href="#abstracts" class="btn btn-primary-custom">Submission</a>
@@ -502,18 +552,33 @@
     </section>
 
     <section id="about" class="bg-white pb-0">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="p-5 bg-light rounded-4 border-start border-5 border-primary shadow-sm position-relative">
-                    <h3 class="fw-bold mb-4 text-primary">About the Symposium</h3>
-                    
-                    <p class="lead mb-4">
-                    Co-Organized by the Center for Teaching and Learning Development of National Yang Ming Chiao Tung University (<a href="https://www.nycu.edu.tw/nycu/en/index" target="_blank">NYCU</a>), and the Taiwan Open Course and Education Consortium (<a href="https://www.tocec.org.tw/web/index.jsp" target="_blank">TOCEC</a>), this inaugural international symposium is hosted by NYCU with support from Educational Innovation International (<a href="https://eii-consulting.com/" target="_blank">EII</a>, USA). The two-day symposium theme is “Human-Centered and Open Education: Teaching and Learning in the Digital World.” The symposium brings together key players, including faculty, researchers, and academic leaders from around the world, to explore the evolving intersection of Generative AI, digital transformations, and faculty mentorship. Through expert-led workshops, presentation sessions, and collaborative dialogues, participants will examine practical strategies to enhance student learning, advance open education, future readiness, and strengthen faculty development, including mentoring, to equip the academic community with the human-centered capabilities needed to thrive in an increasingly complex, changing digital era.
-                    
-                    </p>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div
+                        class="p-5 bg-light rounded-4 border-start border-5 border-primary shadow-sm position-relative">
+                        <h3 class="fw-bold mb-4 text-primary">About the Symposium</h3>
 
-                    <!-- <div class="d-flex justify-content-md-end justify-content-center mt-4">
+                        <p class="lead mb-4">
+                            Co-Organized by the Center for Teaching and Learning Development of National Yang Ming Chiao
+                            Tung University (<a href="https://www.nycu.edu.tw/nycu/en/index" target="_blank">NYCU</a>),
+                            and the Taiwan Open Course and Education Consortium (<a
+                                href="https://www.tocec.org.tw/web/index.jsp" target="_blank">TOCEC</a>), this inaugural
+                            international symposium is hosted by NYCU with support from Educational Innovation
+                            International (<a href="https://eii-consulting.com/" target="_blank">EII</a>, USA). The
+                            two-day symposium theme is “Human-Centered and Open Education: Teaching and Learning in the
+                            Digital World.” The symposium brings together key players, including faculty, researchers,
+                            and academic leaders from around the world, to explore the evolving intersection of
+                            Generative AI, digital transformations, and faculty mentorship. Through expert-led
+                            workshops, presentation sessions, and collaborative dialogues, participants will examine
+                            practical strategies to enhance student learning, advance open education, future readiness,
+                            and strengthen faculty development, including mentoring, to equip the academic community
+                            with the human-centered capabilities needed to thrive in an increasingly complex, changing
+                            digital era.
+
+                        </p>
+
+                        <!-- <div class="d-flex justify-content-md-end justify-content-center mt-4">
                         <a href="#" class="btn-flyer" target="_blank">
                             <span class="icon-circle">
                                 <i class="fas fa-file-download"></i>
@@ -521,21 +586,22 @@
                             <span class="text-label">Event Flyer</span>
                         </a>
                     </div> -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="dates" class="bg-white">
         <div class="container">
             <h2 class="section-title">Important Dates</h2>
             <div class="row g-4">
                 <div class="col-md-3">
-                    <div class="info-card p-4 text-center h-100 border-start border-5 border-info">
+                    <div class="info-card p-4 text-center h-100 border-start border-5 border-info position-relative">
                         <div class="date-badge mb-3">2026/03/15</div>
                         <h5 class="fw-bold">Submission Deadline</h5>
                         <p class="text-secondary small">Submit your papers early!</p>
+                        <a href="#abstracts" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -546,10 +612,12 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="info-card p-4 text-center h-100 border-start border-5 border-primary">
+                    <div class="info-card p-4 text-center h-100 border-start border-5 border-primary position-relative">
                         <div class="date-badge mb-3">2026/04/15</div>
                         <h5 class="fw-bold">Early Bird Reg.</h5>
                         <p class="text-secondary small">Deadline for discounted rates.</p>
+
+                        <a href="#registration" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -569,31 +637,39 @@
             <div class="row align-items-center">
                 <div class="col-lg-7">
                     <h4 class="mb-4 fw-bold">Included Topics</h4>
-                    <p class="text-muted mb-4">We cordially invite educators, researchers, and faculty developers to submit abstracts for the Symposium on Faculty Development for Future-Ready Teaching and Learning. We welcome contributions focusing on both empirical research and innovative teaching practices. To help shape the future of education, we encourage proposals addressing the following themes:</p>
-                    
+                    <p class="text-muted mb-4">We cordially invite educators, researchers, and faculty developers to
+                        submit abstracts for the Symposium on Faculty Development for Future-Ready Teaching and
+                        Learning. We welcome contributions focusing on both empirical research and innovative teaching
+                        practices. To help shape the future of education, we encourage proposals addressing the
+                        following themes:</p>
+
                     <div class="topic-item">
                         <h5>AI Integration</h5>
-                        <p class="mb-0 text-secondary">Exploring generative AI tools and their impact on teaching and learning.</p>
+                        <p class="mb-0 text-secondary">Exploring generative AI tools and their impact on teaching and
+                            learning.</p>
                     </div>
-                    
+
                     <div class="topic-item">
                         <h5>Human-Centered Learning</h5>
-                        <p class="mb-0 text-secondary">Maintaining focus on student learning and faculty growth including mentoring.</p>
+                        <p class="mb-0 text-secondary">Maintaining focus on student learning and faculty growth
+                            including mentoring.</p>
                     </div>
-                    
+
                     <div class="topic-item">
                         <h5>Digital Transformation</h5>
                         <p class="mb-0 text-secondary">Leveraging technology for enhanced learning experiences.</p>
                     </div>
-                    
+
                     <div class="topic-item">
                         <h5>Faculty and Institutional Development</h5>
-                        <p class="mb-0 text-secondary">Building capacity for continuous innovation and professional excellence.</p>
+                        <p class="mb-0 text-secondary">Building capacity for continuous innovation and professional
+                            excellence.</p>
                     </div>
 
                     <div class="topic-item">
                         <h5>Open Course and Education</h5>
-                        <p class="mb-0 text-secondary">Promoting the development and sharing of open educational resources to democratize knowledge.</p>
+                        <p class="mb-0 text-secondary">Promoting the development and sharing of open educational
+                            resources to democratize knowledge.</p>
                     </div>
                 </div>
                 <div class="col-lg-5 text-center mt-4 mt-lg-0">
@@ -601,16 +677,17 @@
                         <i class="fas fa-file-upload fa-3x text-primary mb-3"></i>
                         <h4 class="fw-bold">Submit Your Abstract</h4>
                         <p class="text-muted small">Please use the Abstract Template and follow the guidelines.</p>
-                        
+
                         <div class="d-grid gap-2 col-10 mx-auto">
-                            <a href="https://cmt3.research.microsoft.com/FacDev2026" target="_blank" class="btn btn-primary rounded-pill px-4">Submit Now</a>
+                            <a href="https://cmt3.research.microsoft.com/FacDev2026" target="_blank"
+                                class="btn btn-primary rounded-pill px-4">Submit Now</a>
                             <p class="text-muted small mb-0">via the Microsoft CMT system</p>
-                            
-                            <a href="https://github.com/FacDev2026/FacDev2026.github.io/raw/refs/heads/main/Abstract_Template_FacDev2026.docx" 
-   target="_blank" 
-   class="btn btn-outline-primary rounded-pill mt-2 btn-flex-center" 
-   style="padding: 10px 24px;"> <i class="fas fa-file-download"></i>Download Abstract Template
-</a>
+
+                            <a href="https://github.com/FacDev2026/FacDev2026.github.io/raw/refs/heads/main/Abstract_Template_FacDev2026.docx"
+                                target="_blank" class="btn btn-outline-primary rounded-pill mt-2 btn-flex-center"
+                                style="padding: 10px 24px;"> <i class="fas fa-file-download"></i>Download Abstract
+                                Template
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -619,354 +696,394 @@
     </section>
 
     <section id="program" class="bg-white">
-<div class="container">
-    <h2 class="section-title">Program at a glance</h2>
-    
-    <ul class="nav nav-pills justify-content-center mb-5" id="programTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="day1-tab" data-bs-toggle="pill" data-bs-target="#day1" type="button" role="tab" aria-selected="true">Day 1 - May 25</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="day2-tab" data-bs-toggle="pill" data-bs-target="#day2" type="button" role="tab" aria-selected="false">Day 2 - May 26</button>
-        </li>
-    </ul>
+        <div class="container">
+            <h2 class="section-title">Program at a glance</h2>
 
-    <div class="tab-content" id="programTabContent">
-        
-        <div class="tab-pane fade show active" id="day1" role="tabpanel">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <table class="table schedule-table table-borderless">
-                        <thead>
-                            <tr>
-                                <th style="width:160px">Time</th>
-                                <th>Track A / Main Event</th>
-                                <th>Track B / Parallel Session</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="schedule-row">
-                                <td class="time-col">08:00 - 09:00</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Registration</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">09:00 - 09:30</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Welcome Remarks</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">09:30 - 10:30</td>
-                                <td class="content-col" colspan="2">
-                                    <span class="badge bg-primary mb-1">Keynote</span>
-                                    <h5 class="fw-bold mb-0">Plenary Talk 1</h5>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">10:30 - 11:00</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">11:00 - 12:30</td>
-                                <td class="content-col border-end">
-                                    <span class="track-label">Workshop</span>
-                                    <h6 class="fw-bold">Teaching and learning pedagogies and assessment</h6>
-                                </td>
-                                <td class="content-col">
-                                    <span class="track-label">Oral Session I</span>
-                                    <h6 class="fw-bold">Human-Centered Learning</h6>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">12:30 - 13:30</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold mb-0"><i class="fas fa-utensils me-2"></i>Lunch</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">13:30 - 14:30</td>
-                                <td class="content-col" colspan="2">
-                                    <span class="badge bg-primary mb-1">Keynote</span>
-                                    <h5 class="fw-bold mb-0">Plenary Talk 2</h5>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">14:30 - 15:00</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">15:00 - 15:30</td>
-                                <td class="content-col border-end">
-                                    <span class="track-label">Special Session</span>
-                                    <h6 class="fw-bold">Technology Showcases</h6>
-                                </td>
-                                <td class="content-col" rowspan="2">
-                                    <span class="track-label">Oral Session II</span>
-                                    <h6 class="fw-bold">AI Integration</h6>
-                                    <small class="text-muted">15:00 - 17:00</small>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">15:30 - 17:00</td>
-                                <td class="content-col border-end">
-                                    <span class="track-label">Round Table</span>
-                                    <h6 class="fw-bold">Administrators Roundtable</h6>
-                                    <small class="text-muted">Academic Leadership Discussion</small>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">17:00 - 18:30</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Reception and Networking</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">18:30 - 20:30</td>
-                                <td class="content-col" colspan="2">
-                                    <h5 class="fw-bold mb-0 text-primary">VIP Dinner</h5>
-                                    <small class="text-muted">Location: The Ho Hotel</small>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <ul class="nav nav-pills justify-content-center mb-5" id="programTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="day1-tab" data-bs-toggle="pill" data-bs-target="#day1"
+                        type="button" role="tab" aria-selected="true">Day 1 - May 25</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="day2-tab" data-bs-toggle="pill" data-bs-target="#day2" type="button"
+                        role="tab" aria-selected="false">Day 2 - May 26</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="programTabContent">
+
+                <div class="tab-pane fade show active" id="day1" role="tabpanel">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <table class="table schedule-table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th style="width:160px">Time</th>
+                                        <th>Track A / Main Event</th>
+                                        <th>Track B / Parallel Session</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">08:00 - 09:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold mb-0">Registration</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">09:00 - 09:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold mb-0">Welcome Remarks</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">09:30 - 10:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <span class="badge bg-primary mb-1">Keynote</span>
+                                            <h5 class="fw-bold mb-0">Plenary Talk 1</h5>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">10:30 - 11:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break
+                                            </h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">11:00 - 12:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Workshop</span>
+                                            <h6 class="fw-bold">Teaching and learning pedagogies and assessment</h6>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Oral Session I</span>
+                                            <h6 class="fw-bold">Human-Centered Learning</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">12:30 - 13:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold mb-0"><i class="fas fa-utensils me-2"></i>Lunch</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">13:30 - 14:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <span class="badge bg-primary mb-1">Keynote</span>
+                                            <h5 class="fw-bold mb-0">Plenary Talk 2</h5>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">14:30 - 15:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break
+                                            </h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">15:00 - 15:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Special Session</span>
+                                            <h6 class="fw-bold">Technology Showcases</h6>
+                                        </td>
+                                        <td class="content-col" rowspan="2">
+                                            <span class="track-label">Oral Session II</span>
+                                            <h6 class="fw-bold">AI Integration</h6>
+                                            <small class="text-muted">15:00 - 17:00</small>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">15:30 - 17:00</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Round Table</span>
+                                            <h6 class="fw-bold">Administrators Roundtable</h6>
+                                            <small class="text-muted">Academic Leadership Discussion</small>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">17:00 - 18:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold mb-0">Reception and Networking</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">18:30 - 20:30</td>
+                                        <td class="content-col" colspan="2">
+                                            <h5 class="fw-bold mb-0 text-primary">VIP Dinner</h5>
+                                            <small class="text-muted">Location: The Ho Hotel</small>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="tab-pane fade" id="day2" role="tabpanel">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <table class="table schedule-table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th style="width:160px">Time</th>
+                                        <th>Track A / Main Event</th>
+                                        <th>Track B / Parallel Session</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">08:30 - 09:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold mb-0">Registration</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">09:00 - 10:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Workshop</span>
+                                            <h6 class="fw-bold">Mentorship Training</h6>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Oral Session III</span>
+                                            <h6 class="fw-bold">Digital Transformation</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">10:30 - 11:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Coffee
+                                                Break</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">11:00 - 12:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <span class="badge bg-primary mb-1">Keynote</span>
+                                            <h5 class="fw-bold mb-0">Plenary Talk 3</h5>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">12:00 - 13:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold mb-0"><i class="fas fa-utensils me-2"></i>Lunch</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">13:00 - 14:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Panel</span>
+                                            <h6 class="fw-bold">NYCU Faculty Panel</h6>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Oral Session IV</span>
+                                            <h6 class="fw-bold">Open Course and Education</h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="schedule-row">
+                                        <td class="time-col">14:30 - 15:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break
+                                            </h6>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="schedule-row">
+                                        <td class="time-col">15:00 - 16:30</td>
+                                        <td class="content-col border-end">
+                                            <span class="track-label">Special Panel</span>
+                                            <h6 class="fw-bold">TOCEC Panel</h6>
+                                            <small class="text-muted">Taiwan Open Course and Education
+                                                Consortium</small>
+                                        </td>
+                                        <td class="content-col">
+                                            <span class="track-label">Oral Session V</span>
+                                            <h6 class="fw-bold">Faculty and Institutional Development</h6>
+                                            <small class="text-muted">Parallel research presentations</small>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="schedule-row">
+                                        <td class="time-col">16:30 - 17:00</td>
+                                        <td class="content-col" colspan="2">
+                                            <h5 class="fw-bold mb-0 text-center">Closing</h5>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <div class="tab-pane fade" id="day2" role="tabpanel">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                     <table class="table schedule-table table-borderless">
-                        <thead>
-                            <tr>
-                                <th style="width:160px">Time</th>
-                                <th>Track A / Main Event</th>
-                                <th>Track B / Parallel Session</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="schedule-row">
-                                <td class="time-col">08:30 - 09:00</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold mb-0">Registration</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">09:00 - 10:30</td>
-                                <td class="content-col border-end">
-                                    <span class="track-label">Workshop</span>
-                                    <h6 class="fw-bold">Mentorship Training</h6>
-                                </td>
-                                <td class="content-col">
-                                    <span class="track-label">Oral Session III</span>
-                                    <h6 class="fw-bold">Digital Transformation</h6>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">10:30 - 11:00</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Coffee Break</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">11:00 - 12:00</td>
-                                <td class="content-col" colspan="2">
-                                    <span class="badge bg-primary mb-1">Keynote</span>
-                                    <h5 class="fw-bold mb-0">Plenary Talk 3</h5>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">12:00 - 13:00</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold mb-0"><i class="fas fa-utensils me-2"></i>Lunch</h6></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">13:00 - 14:30</td>
-                                <td class="content-col border-end">
-                                    <span class="track-label">Panel</span>
-                                    <h6 class="fw-bold">NYCU Faculty Panel</h6>
-                                </td>
-                                <td class="content-col">
-                                    <span class="track-label">Oral Session IV</span>
-                                    <h6 class="fw-bold">Open Course and Education</h6>
-                                </td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td class="time-col">14:30 - 15:00</td>
-                                <td class="content-col" colspan="2"><h6 class="fw-bold text-muted mb-0"><i class="fas fa-coffee me-2"></i>Break</h6></td>
-                            </tr>
-                            
-                            <tr class="schedule-row">
-                                <td class="time-col">15:00 - 16:30</td>
-                                <td class="content-col border-end">
-                                    <span class="track-label">Special Panel</span>
-                                    <h6 class="fw-bold">TOCEC Panel</h6>
-                                    <small class="text-muted">Taiwan Open Course and Education Consortium</small>
-                                </td>
-                                <td class="content-col">
-                                    <span class="track-label">Oral Session V</span>
-                                    <h6 class="fw-bold">Faculty and Institutional Development</h6>
-                                    <small class="text-muted">Parallel research presentations</small>
-                                </td>
-                            </tr>
-                            
-                            <tr class="schedule-row">
-                                <td class="time-col">16:30 - 17:00</td>
-                                <td class="content-col" colspan="2"><h5 class="fw-bold mb-0 text-center">Closing</h5></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-</section>
+    </section>
 
 
 
     <section id="registration" class="bg-light">
-    <div class="container">
-        <h2 class="section-title">Registration</h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="p-5 text-center border rounded-4 bg-white shadow-sm">
-                    <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
-                    <h3 class="fw-bold mb-3">Registration Fees</h3>
-                    
-                    <div class="row justify-content-center mb-4 mt-4 g-3">
-                        <div class="col-md-6">
-                            <div class="p-4 bg-light rounded-3 border border-2 border-primary position-relative">
-                                <span class="badge bg-primary position-absolute top-0 start-50 translate-middle rounded-pill">Recommended</span>
-                                <h6 class="fw-bold text-primary mb-2 mt-2">Early Bird / Author</h6>
-                                <h2 class="fw-bold mb-0">NT$ 5,300 <span class="fs-6 fw-normal text-muted">(TWD)</span></h2>
-                                <div class="text-muted small mt-1">Approx. <strong>$160 USD</strong></div>
+        <div class="container">
+            <h2 class="section-title">Registration</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="p-5 text-center border rounded-4 bg-white shadow-sm">
+                        <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
+                        <h3 class="fw-bold mb-3">Registration Fees</h3>
+
+                        <div class="row justify-content-center mb-4 mt-4 g-3">
+                            <div class="col-md-6">
+                                <div class="p-4 bg-light rounded-3 border border-2 border-primary position-relative">
+                                    <span
+                                        class="badge bg-primary position-absolute top-0 start-50 translate-middle rounded-pill">Recommended</span>
+                                    <h6 class="fw-bold text-primary mb-2 mt-2">Early Bird / Author</h6>
+                                    <h2 class="fw-bold mb-0">NT$ 5,300 <span
+                                            class="fs-6 fw-normal text-muted">(TWD)</span></h2>
+                                    <div class="text-muted small mt-1">Approx. <strong>$160 USD</strong></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-4 bg-white rounded-3 border">
+                                    <h6 class="fw-bold text-secondary mb-2 mt-2">Regular</h6>
+                                    <h2 class="fw-bold mb-0 text-secondary">NT$ 6,600 <span
+                                            class="fs-6 fw-normal text-muted">(TWD)</span></h2>
+                                    <div class="text-muted small mt-1">Approx. <strong>$200 USD</strong></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="p-4 bg-white rounded-3 border">
-                                <h6 class="fw-bold text-secondary mb-2 mt-2">Regular</h6>
-                                <h2 class="fw-bold mb-0 text-secondary">NT$ 6,600 <span class="fs-6 fw-normal text-muted">(TWD)</span></h2>
-                                <div class="text-muted small mt-1">Approx. <strong>$200 USD</strong></div>
+
+                        <div class="mb-4 text-center">
+                            <p class="text-primary small fw-bold mb-2">
+                                <i class="fas fa-university me-1"></i>
+                                NYCU Faculty: Registration fees will be fully sponsored by the university.
+                            </p>
+                            <p class="text-muted small mb-0">
+                                <i class="fas fa-credit-card me-1"></i>
+                                Secure payment via <strong>NewebPay</strong>. <br>
+                                Major credit cards accepted. Fees are processed in <strong>TWD</strong>.
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <p class="text-uppercase text-muted fw-bold small mb-3" style="letter-spacing: 1px;">The
+                                registration fee covers</p>
+                            <div class="d-flex flex-wrap justify-content-center gap-2">
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i
+                                        class="fas fa-chalkboard-user text-primary me-2"></i>Workshops</span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i
+                                        class="fas fa-microphone-alt text-primary me-2"></i>All Talks</span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i
+                                        class="fas fa-glass-cheers text-primary me-2"></i>Reception</span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i
+                                        class="fas fa-utensils text-primary me-2"></i>Lunch (2 Days)</span>
+                                <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i
+                                        class="fas fa-mug-hot text-primary me-2"></i>Coffee Breaks</span>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mb-4 text-center">
-                        <p class="text-primary small fw-bold mb-2">
-                            <i class="fas fa-university me-1"></i>
-                            NYCU Faculty: Registration fees will be fully sponsored by the university.
-                        </p>
-                        <p class="text-muted small mb-0">
-                            <i class="fas fa-credit-card me-1"></i>
-                            Secure payment via <strong>NewebPay</strong>. <br>
-                            Major credit cards accepted. Fees are processed in <strong>TWD</strong>.
-                        </p>
-                    </div>
-
-                    <div class="mb-5">
-                        <p class="text-uppercase text-muted fw-bold small mb-3" style="letter-spacing: 1px;">The registration fee covers</p>
-                        <div class="d-flex flex-wrap justify-content-center gap-2">
-                            <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i class="fas fa-chalkboard-user text-primary me-2"></i>Workshops</span>
-                            <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i class="fas fa-microphone-alt text-primary me-2"></i>All Talks</span>
-                            <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i class="fas fa-glass-cheers text-primary me-2"></i>Reception</span>
-                            <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i class="fas fa-utensils text-primary me-2"></i>Lunch (2 Days)</span>
-                            <span class="px-3 py-2 bg-light rounded-pill border text-secondary small"><i class="fas fa-mug-hot text-primary me-2"></i>Coffee Breaks</span>
+                        <div class="alert alert-info d-inline-block text-start mb-4">
+                            <strong><i class="fas fa-calendar-check me-2"></i>Mark your calendar:</strong><br>
+                            Early Bird Deadline: April 15, 2026
                         </div>
-                    </div>
 
-                    <div class="alert alert-info d-inline-block text-start mb-4">
-                        <strong><i class="fas fa-calendar-check me-2"></i>Mark your calendar:</strong><br>
-                        Early Bird Deadline: April 15, 2026
-                    </div>
-                    
-                    <div>
+                        <div>
 
-                        <a href="https://form.jotform.com/260258939599478" target="_blank" class="btn btn-primary rounded-pill px-4">Registration</a>
+                            <a href="https://form.jotform.com/260258939599478" target="_blank"
+                                class="btn btn-primary rounded-pill px-4">Registration</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-    
+    </section>
+
     <section id="committee" class="bg-white">
-    <div class="container">
-        <h2 class="section-title text-center fw-bold mb-5">Steering Committee</h2>
-        <div class="row g-4 justify-content-center">
+        <div class="container">
+            <h2 class="section-title text-center fw-bold mb-5">Steering Committee</h2>
+            <div class="row g-4 justify-content-center">
 
-            <div class="col-md-4 col-lg-3">
-                <div class="member-info-card text-center">
-                    <div class="photo-wrapper">
-                        <img src="img/YSC.png" alt="Yong-Sheng Chen" class="member-photo">
-                        <div class="chair-tag">Chair</div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="member-info-card text-center">
+                        <div class="photo-wrapper">
+                            <img src="img/YSC.png" alt="Yong-Sheng Chen" class="member-photo">
+                            <div class="chair-tag">Chair</div>
+                        </div>
+                        <h5 class="fw-bold member-name">Yong-Sheng Chen</h5>
+                        <p class="member-title mb-1">Dean of Academic Affairs</p>
+                        <p class="member-org mb-0">NYCU</p>
                     </div>
-                    <h5 class="fw-bold member-name">Yong-Sheng Chen</h5>
-                    <p class="member-title mb-1">Dean of Academic Affairs</p>
-                    <p class="member-org mb-0">NYCU</p>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-lg-3">
-                <div class="member-info-card text-center">
-                    <div class="photo-wrapper">
-                        <img src="img/HDC.jpg" alt="Haydn Chen" class="member-photo">
+                <div class="col-md-4 col-lg-3">
+                    <div class="member-info-card text-center">
+                        <div class="photo-wrapper">
+                            <img src="img/HDC.jpg" alt="Haydn Chen" class="member-photo">
+                        </div>
+                        <h5 class="fw-bold member-name">Haydn Chen</h5>
+                        <p class="member-title mb-1">Chief Strategy Officer</p>
+                        <p class="member-org mb-0">NYCU</p>
                     </div>
-                    <h5 class="fw-bold member-name">Haydn Chen</h5>
-                    <p class="member-title mb-1">Chief Strategy Officer</p>
-                    <p class="member-org mb-0">NYCU</p>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-lg-3">
-                <div class="member-info-card text-center">
-                    <div class="photo-wrapper">
-                        <img src="img/SB.png" alt="Spencer Benson" class="member-photo">
+                <div class="col-md-4 col-lg-3">
+                    <div class="member-info-card text-center">
+                        <div class="photo-wrapper">
+                            <img src="img/SB.png" alt="Spencer Benson" class="member-photo">
+                        </div>
+                        <h5 class="fw-bold member-name">Spencer Benson</h5>
+                        <p class="member-title mb-1">Director</p>
+                        <p class="member-org mb-0">EII Consulting</p>
                     </div>
-                    <h5 class="fw-bold member-name">Spencer Benson</h5>
-                    <p class="member-title mb-1">Director</p>
-                    <p class="member-org mb-0">EII Consulting</p>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-lg-3">
-                <div class="member-info-card text-center">
-                    <div class="photo-wrapper">
-                        <img src="https://yjtseng.info/images/YJTseng.small.jpg" alt="Yi-Ju Tseng" class="member-photo">
+                <div class="col-md-4 col-lg-3">
+                    <div class="member-info-card text-center">
+                        <div class="photo-wrapper">
+                            <img src="https://yjtseng.info/images/YJTseng.small.jpg" alt="Yi-Ju Tseng"
+                                class="member-photo">
+                        </div>
+                        <h5 class="fw-bold member-name">Yi-Ju Tseng</h5>
+                        <p class="member-title mb-1">Director</p>
+                        <p class="member-org mb-0">CTLD, NYCU</p>
                     </div>
-                    <h5 class="fw-bold member-name">Yi-Ju Tseng</h5>
-                    <p class="member-title mb-1">Director</p>
-                    <p class="member-org mb-0">CTLD, NYCU</p>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-lg-3">
-                <div class="member-info-card text-center">
-                    <div class="photo-wrapper">
-                        <img src="img/KYC.jpg" alt="Kuei-Yuan Chan" class="member-photo">
+                <div class="col-md-4 col-lg-3">
+                    <div class="member-info-card text-center">
+                        <div class="photo-wrapper">
+                            <img src="img/KYC.jpg" alt="Kuei-Yuan Chan" class="member-photo">
+                        </div>
+                        <h5 class="fw-bold member-name">Kuei-Yuan Chan</h5>
+                        <p class="member-title mb-1">Professor</p>
+                        <p class="member-org mb-0">Mech. Eng., NTU</p>
                     </div>
-                    <h5 class="fw-bold member-name">Kuei-Yuan Chan</h5>
-                    <p class="member-title mb-1">Professor</p>
-                    <p class="member-org mb-0">Mech. Eng., NTU</p>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-lg-3">
-                <div class="member-info-card text-center">
-                    <div class="photo-wrapper">
-                        <img src="img/TK.jpg" alt="Theresa Kwong" class="member-photo">
+                <div class="col-md-4 col-lg-3">
+                    <div class="member-info-card text-center">
+                        <div class="photo-wrapper">
+                            <img src="img/TK.jpg" alt="Theresa Kwong" class="member-photo">
+                        </div>
+                        <h5 class="fw-bold member-name">Theresa Kwong</h5>
+                        <p class="member-title mb-1">Director</p>
+                        <p class="member-org mb-0">CHTL, HKBU</p>
                     </div>
-                    <h5 class="fw-bold member-name">Theresa Kwong</h5>
-                    <p class="member-title mb-1">Director</p>
-                    <p class="member-org mb-0">CHTL, HKBU</p>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-lg-3">
-                <div class="member-info-card text-center">
-                    <div class="photo-wrapper">
-                        <img src="img/GB.jpeg" alt="Gina Bonior" class="member-photo">
+                <div class="col-md-4 col-lg-3">
+                    <div class="member-info-card text-center">
+                        <div class="photo-wrapper">
+                            <img src="img/GB.jpeg" alt="Gina Bonior" class="member-photo">
+                        </div>
+                        <h5 class="fw-bold member-name">Gina Bonior</h5>
+                        <p class="member-title mb-1">Dean</p>
+                        <p class="member-org mb-0">College of Edu., Silliman Univ.</p>
                     </div>
-                    <h5 class="fw-bold member-name">Gina Bonior</h5>
-                    <p class="member-title mb-1">Dean</p>
-                    <p class="member-org mb-0">College of Edu., Silliman Univ.</p>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-</section>
-   
+    </section>
+
 
     <section id="venue" class="bg-light">
         <div class="container">
@@ -987,11 +1104,12 @@
                             <p class="text-secondary ms-3 mb-1">1001 University Road, Hsinchu, Taiwan 300093</p>
                             <p class="text-secondary ms-3 small">(國立陽明交通大學 光復校區 浩然圖書館 國際會議廳)</p>
                         </div>
-                        
+
                         <div class="mt-4 ms-3">
-                             <a href="https://maps.app.goo.gl/daRAKeHWa4y21bGP9" target="_blank" class="btn btn-outline-primary rounded-pill">
+                            <a href="https://maps.app.goo.gl/daRAKeHWa4y21bGP9" target="_blank"
+                                class="btn btn-outline-primary rounded-pill">
                                 <i class="fas fa-location-arrow me-2"></i> Open in Google Maps
-                             </a>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1009,9 +1127,11 @@
                                 <div class="d-flex align-items-center text-secondary small">
                                     <i class="fas fa-walking me-2"></i> 10-15 mins walk
                                 </div>
-                                <a href="https://maps.app.goo.gl/VVzmMX9Jiir3W8HV8" target="_blank" class="small text-decoration-none mt-1 d-inline-block">View Map <i class="fas fa-external-link-alt small"></i></a>
+                                <a href="https://maps.app.goo.gl/VVzmMX9Jiir3W8HV8" target="_blank"
+                                    class="small text-decoration-none mt-1 d-inline-block">View Map <i
+                                        class="fas fa-external-link-alt small"></i></a>
                             </div>
-                            
+
                             <hr class="my-1 opacity-25">
 
                             <div class="list-group-item border-0 px-0 pt-3">
@@ -1022,7 +1142,9 @@
                                 <div class="d-flex align-items-center text-secondary small">
                                     <i class="fas fa-car me-2"></i> 15 mins taxi
                                 </div>
-                                <a href="https://maps.app.goo.gl/gMaBgJ75bJx3yDjU7" target="_blank" class="small text-decoration-none mt-1 d-inline-block">View Map <i class="fas fa-external-link-alt small"></i></a>
+                                <a href="https://maps.app.goo.gl/gMaBgJ75bJx3yDjU7" target="_blank"
+                                    class="small text-decoration-none mt-1 d-inline-block">View Map <i
+                                        class="fas fa-external-link-alt small"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1033,17 +1155,19 @@
                 <div class="col-12">
                     <h2 class="section-title text-start mb-4"><i class="fas fa-route me-2"></i>Traffic Information</h2>
                 </div>
-                
+
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="info-card p-4 h-100 border-top border-4 border-secondary">
                         <div class="mb-3 text-secondary"><i class="fas fa-train fa-2x"></i></div>
                         <h5 class="fw-bold">TRA Train</h5>
                         <p class="small text-muted mb-2">Hsinchu Station (新竹火車站)</p>
                         <ul class="list-unstyled small mb-3">
-                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take <strong>Hsinchu Bus No. 2</strong> directly to NYCU.</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take
+                                <strong>Hsinchu Bus No. 2</strong> directly to NYCU.</li>
                             <li><i class="fas fa-clock text-secondary me-1"></i>Bus Time: ~20-25 mins</li>
                         </ul>
-                        <a href="http://www.hcbus.com.tw/big5/information-2.asp?select=2&button=%E9%80%81%E5%87%BA" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill w-100">
+                        <a href="http://www.hcbus.com.tw/big5/information-2.asp?select=2&button=%E9%80%81%E5%87%BA"
+                            target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill w-100">
                             <i class="fas fa-info-circle me-1"></i> Bus No.2 Info
                         </a>
                     </div>
@@ -1055,11 +1179,14 @@
                         <h5 class="fw-bold">THSR</h5>
                         <p class="small text-muted mb-2">Hsinchu Station (高鐵新竹站)</p>
                         <ul class="list-unstyled small mb-3">
-                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take <strong>Kuo-Kuang Bus 182</strong>.</li>
-                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Or take <strong>School Bus</strong> (shuttle).</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take
+                                <strong>Kuo-Kuang Bus 182</strong>.</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Or take
+                                <strong>School Bus</strong> (shuttle).</li>
                             <li><i class="fas fa-clock text-secondary me-1"></i>Travel Time: ~20-40 mins</li>
                         </ul>
-                        <a href="https://www.nycu.edu.tw/userfiles/gaen/images/20241115134640873.jpg" target="_blank" class="btn btn-sm btn-outline-warning rounded-pill w-100 text-dark">
+                        <a href="https://www.nycu.edu.tw/userfiles/gaen/images/20241115134640873.jpg" target="_blank"
+                            class="btn btn-sm btn-outline-warning rounded-pill w-100 text-dark">
                             <i class="fas fa-bus me-1"></i> School Bus Schedule
                         </a>
                     </div>
@@ -1071,11 +1198,15 @@
                         <h5 class="fw-bold">Intercity Bus</h5>
                         <p class="small text-muted mb-2">From Taipei (台北)</p>
                         <ul class="list-unstyled small mb-3">
-                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i><strong>HowTai Bus (2011)</strong></li>
-                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i><strong>Kuo-Kuang Bus (1822)</strong></li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i><strong>HowTai
+                                    Bus (2011)</strong></li>
+                            <li class="mb-2"><i
+                                    class="fas fa-chevron-right text-primary me-1 small"></i><strong>Kuo-Kuang Bus
+                                    (1822)</strong></li>
                             <li><i class="fas fa-map-pin text-secondary me-1"></i>Stop: NYCU Station</li>
                         </ul>
-                        <a href="http://www.howtai.com.tw/LatestScheduleRun.aspx" target="_blank" class="btn btn-sm btn-outline-success rounded-pill w-100">
+                        <a href="http://www.howtai.com.tw/LatestScheduleRun.aspx" target="_blank"
+                            class="btn btn-sm btn-outline-success rounded-pill w-100">
                             <i class="fas fa-info-circle me-1"></i> HowTai Bus Info
                         </a>
                     </div>
@@ -1105,7 +1236,7 @@
 
     <footer id="contact">
         <div class="container text-center">
-            <h4 class="fw-bold mb-4">Contact Us</h4>
+            <h4 class="fw-bold mb-4">Sponsoring & Host Institutions</h4>
             <div class="row justify-content-center text-start">
                 <div class="col-md-4 mb-4 border-end border-secondary">
                     <h6 class="text-uppercase text-info mb-3">Co-Organized by</h6>
@@ -1120,16 +1251,21 @@
                 <div class="col-md-4 mb-4 ps-md-4">
                     <h6 class="text-uppercase text-info mb-3">Hosted by</h6>
                     <p class="mb-0">National Yang Ming Chiao Tung University</p>
+                    <small class="text-white-50">facdev2026@gmail.com</small>
                 </div>
-                
+
             </div>
             <hr class="my-4 border-secondary opacity-50">
-            <p class="small text-white-50 mb-0">© 2026 Symposium on Faculty Development for Future-Ready Teaching and Learning. All rights reserved.</p>
-            <p class="small text-white-50 mb-0">The Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.</p>
-            
+            <p class="small text-white-50 mb-0">© 2026 Symposium on Faculty Development for Future-Ready Teaching and
+                Learning. All rights reserved.</p>
+            <p class="small text-white-50 mb-0">The Microsoft CMT service was used for managing the peer-reviewing
+                process for this conference. This service was provided for free by Microsoft and they bore all expenses,
+                including costs for Azure cloud services as well as for software development and support.</p>
+
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
