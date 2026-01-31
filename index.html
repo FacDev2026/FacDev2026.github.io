@@ -58,7 +58,17 @@
             color: white;
             overflow: hidden;
         }
-        
+        .hero-section .btn {
+    display: inline-flex;    /* 使用 flex 布局 */
+    align-items: center;     /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    height: 50px;            /* 固定高度是確保對齊最簡單的方法 */
+    padding: 0 30px;         /* 左右內距 */
+    border-radius: 30px;     /* 圓角 */
+    font-weight: 600;
+    transition: all 0.3s;
+    line-height: 1;          /* 將行高設為 1，避免字體基準線偏移 */
+}
         .hero-section::before {
             content: '';
             position: absolute;
@@ -242,28 +252,50 @@
         }
 
         .btn-primary-custom {
-            background-color: var(--accent-color);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            color: var(--primary-color);
-            transition: all 0.3s;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .btn-primary-custom:hover {
-            background-color: white;
-            color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(255,255,255,0.5);
-        }
+    background-color: var(--accent-color);
+    border: none;
+    color: var(--primary-color);
+    position: relative;
+    z-index: 10;
+}
+
+.btn-primary-custom:hover {
+    background-color: white;
+    color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
         
         .btn-outline-light {
             position: relative;
             z-index: 10;
         }
-        
+        /* 針對 Registration 按鈕的額外微調 */
+.btn-reg-outline {
+    border: 2px solid white !important; /* 稍微加粗邊框增加質感 */
+    color: white !important;
+    background: transparent;
+}
+
+.btn-reg-outline:hover {
+    background: white !important;
+    color: var(--primary-color) !important;
+}
+        /* 強制按鈕內容垂直置中 */
+.btn-flex-center {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 移除行高造成的偏移 */
+    gap: 8px;       /* 自動設定圖示與文字間的間距 */
+}
+
+/* 確保按鈕內部的 i 標籤（Icon）沒有額外的 margin 影響位置 */
+.btn-flex-center i {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+}
         /* Spacing for Traffic Section */
         #traffic {
             scroll-margin-top: 100px; /* Ensures jump doesn't hide title */
@@ -462,7 +494,7 @@
                     <p class="lead mb-5" style="opacity: 0.9;">Join us in exploring the future of education.</p>
                     <div class="d-flex justify-content-center gap-3">
                         <a href="#abstracts" class="btn btn-primary-custom">Submission</a>
-                        <a href="#registration" class="btn btn-outline-light rounded-pill px-4 py-2">Registration</a>
+                        <a href="#registration" class="btn btn-reg-outline">Registration</a>
                     </div>
                 </div>
             </div>
@@ -481,14 +513,14 @@
                     
                     </p>
 
-                    <div class="d-flex justify-content-md-end justify-content-center mt-4">
-                        <a href="" class="btn-flyer" target="_blank">
+                    <!-- <div class="d-flex justify-content-md-end justify-content-center mt-4">
+                        <a href="#" class="btn-flyer" target="_blank">
                             <span class="icon-circle">
                                 <i class="fas fa-file-download"></i>
                             </span>
                             <span class="text-label">Event Flyer</span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -574,9 +606,11 @@
                             <a href="https://cmt3.research.microsoft.com/FacDev2026" target="_blank" class="btn btn-primary rounded-pill px-4">Submit Now</a>
                             <p class="text-muted small mb-0">via the Microsoft CMT system</p>
                             
-                            <a href="https://github.com/FacDev2026/FacDev2026.github.io/raw/refs/heads/main/Abstract_Template_FacDev2026.docx" target="_blank" class="btn btn-outline-primary rounded-pill py-2 mt-2">
-                                <i class="fas fa-file-download me-2"></i>Download Abstract Template
-                            </a>
+                            <a href="https://github.com/FacDev2026/FacDev2026.github.io/raw/refs/heads/main/Abstract_Template_FacDev2026.docx" 
+   target="_blank" 
+   class="btn btn-outline-primary rounded-pill mt-2 btn-flex-center" 
+   style="padding: 10px 24px;"> <i class="fas fa-file-download"></i>Download Abstract Template
+</a>
                         </div>
                     </div>
                 </div>
