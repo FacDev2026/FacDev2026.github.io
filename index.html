@@ -405,6 +405,27 @@
 .btn-flyer:hover .icon-circle {
     transform: rotate(-10deg) scale(1.1);
 }
+/* 確保在小螢幕上卡片高度能隨內容伸展 */
+@media (max-width: 991.98px) {
+    .info-card.h-100 {
+        height: auto !important;
+        min-height: 250px; /* 給予一個最小高度維持美觀，但不鎖死 */
+        margin-bottom: 20px;
+    }
+    
+    /* 修正 Venue 部分在手機上的間距 */
+    .section-title.text-start {
+        text-align: center !important;
+    }
+    .section-title.text-start::after {
+        margin: 15px auto 0 !important;
+    }
+}
+
+/* 針對 Accommodation 列表的微調 */
+.list-group-item {
+    background-color: transparent;
+}
     </style>
 </head>
 <body>
@@ -456,7 +477,8 @@
                     <h3 class="fw-bold mb-4 text-primary">About the Symposium</h3>
                     
                     <p class="lead mb-4">
-                       Organized by the Taiwan Open Course and Education Consortium (<a href="https://www.tocec.org.tw/web/index.jsp" target="_blank">TOCEC</a>) and hosted by the Center for Teaching and Learning Development at National Yang Ming Chiao Tung University (<a href="https://www.nycu.edu.tw/nycu/en/index" target="_blank">NYCU</a>), this international gathering addresses the theme of "<b>Human-Centered Teaching and Learning in an Open Education and Digital World.</b>" We invite educators, researchers, and administrators from around the world to explore the critical intersection of generative AI integration, digital transformation, and mentorship excellence. Through expert-led sessions and global collaboration, participants will gain practical strategies to enhance student learning, promote open education, and foster faculty development, equipping the academic community with the tools needed to be truly future-ready.
+                    Co-Organized by the Center for Teaching and Learning Development of National Yang Ming Chiao Tung University (<a href="https://www.nycu.edu.tw/nycu/en/index" target="_blank">NYCU</a>), and the Taiwan Open Course and Education Consortium (<a href="https://www.tocec.org.tw/web/index.jsp" target="_blank">TOCEC</a>), this inaugural international symposium is hosted by NYCU with support from Educational Innovation International (<a href="https://eii-consulting.com/" target="_blank">EII</a>, USA). The two-day symposium theme is “Human-Centered and Open Education: Teaching and Learning in the Digital World.” The symposium brings together key players, including faculty, researchers, and academic leaders from around the world, to explore the evolving intersection of Generative AI, digital transformations, and faculty mentorship. Through expert-led workshops, presentation sessions, and collaborative dialogues, participants will examine practical strategies to enhance student learning, advance open education, future readiness, and strengthen faculty development, including mentoring, to equip the academic community with the human-centered capabilities needed to thrive in an increasingly complex, changing digital era.
+                    
                     </p>
 
                     <div class="d-flex justify-content-md-end justify-content-center mt-4">
@@ -1052,18 +1074,20 @@
             <h4 class="fw-bold mb-4">Contact Us</h4>
             <div class="row justify-content-center text-start">
                 <div class="col-md-4 mb-4 border-end border-secondary">
-                    <h6 class="text-uppercase text-info mb-3">Organized by</h6>
+                    <h6 class="text-uppercase text-info mb-3">Co-Organized by</h6>
+                    <p class="mb-0">Center for Teaching and Learning Development</p>
+                    <small class="text-white-50">National Yang Ming Chiao Tung University</small>
                     <p class="mb-0">Taiwan Open Course and Education Consortium (TOCEC)</p>
                 </div>
                 <div class="col-md-4 mb-4 border-end border-secondary">
-                    <h6 class="text-uppercase text-info mb-3">Hosted by</h6>
-                    <p class="mb-0">Center for Teaching and Learning Development</p>
-                    <small class="text-white-50">National Yang Ming Chiao Tung University</small>
-                </div>
-                <div class="col-md-4 mb-4 ps-md-4">
                     <h6 class="text-uppercase text-info mb-3">Sponsors</h6>
                     <p class="mb-0">Education Innovations International Consulting, LLC</p>
                 </div>
+                <div class="col-md-4 mb-4 ps-md-4">
+                    <h6 class="text-uppercase text-info mb-3">Hosted by</h6>
+                    <p class="mb-0">National Yang Ming Chiao Tung University</p>
+                </div>
+                
             </div>
             <hr class="my-4 border-secondary opacity-50">
             <p class="small text-white-50 mb-0">© 2026 Symposium on Faculty Development for Future-Ready Teaching and Learning. All rights reserved.</p>
