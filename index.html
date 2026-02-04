@@ -505,6 +505,24 @@
         .list-group-item {
             background-color: transparent;
         }
+        /* 地點圖片專屬樣式 */
+.venue-image-container {
+    width: 100%;
+    height: 250px; /* 固定高度維持整齊 */
+    overflow: hidden;
+    border-radius: 16px 16px 0 0; /* 僅上方圓角，銜接下方文字內容 */
+}
+
+.venue-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 確保圖片填滿容器且不拉伸 */
+    transition: transform 0.5s ease;
+}
+
+.info-card:hover .venue-image-container img {
+    transform: scale(1.05); /* 增加一點互動縮放感 */
+}
     </style>
 </head>
 
@@ -804,7 +822,7 @@
                                     <tr class="schedule-row">
                                         <td class="time-col">17:00 - 18:30</td>
                                         <td class="content-col" colspan="2">
-                                            <h6 class="fw-bold mb-0">Reception and Networking</h6>
+                                            <h6 class="fw-bold mb-0 text-primary"><i class="fas fa-glass-cheers text-primary me-2"></i>Reception and Networking</h6>
                                         </td>
                                     </tr>
                                     <tr class="schedule-row">
@@ -1088,9 +1106,13 @@
     <section id="venue" class="bg-light">
         <div class="container">
             <div class="row g-4 mb-5">
-                <div class="col-lg-6">
-                    <h2 class="section-title text-start mb-4">Venue</h2>
-                    <div class="info-card p-4 h-100 d-flex flex-column justify-content-center">
+            <div class="col-lg-6">
+                <h2 class="section-title text-center text-start mb-4">Venue</h2>
+                <div class="info-card h-100 shadow-sm">
+                    <div class="venue-image-container">
+                        <img src="img/library.jpg" alt="NYCU Library Venue">
+                    </div>
+                    <div class="p-4 d-flex flex-column justify-content-center">
                         <div class="d-flex align-items-center mb-4">
                             <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
                                 <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
@@ -1104,45 +1126,47 @@
                             <p class="text-secondary ms-3 mb-1">1001 University Road, Hsinchu, Taiwan 300093</p>
                             <p class="text-secondary ms-3 small">(國立陽明交通大學 光復校區 浩然圖書館 國際會議廳)</p>
                         </div>
-
                         <div class="mt-4 ms-3">
-                            <a href="https://maps.app.goo.gl/daRAKeHWa4y21bGP9" target="_blank"
+                            <a href="https://maps.app.goo.gl/vL7kUa6X8N8m6mG6A" target="_blank"
                                 class="btn btn-outline-primary rounded-pill">
                                 <i class="fas fa-location-arrow me-2"></i> Open in Google Maps
                             </a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-lg-6">
-                    <h2 class="section-title text-start mb-4">Accommodation</h2>
-                    <div class="info-card p-4 h-100">
+            <div class="col-lg-6">
+                <h2 class="section-title text-center text-start mb-4">Accommodation</h2>
+                <div class="info-card h-100 shadow-sm">
+                    <div class="venue-image-container">
+                        <img src="https://www.thehohotel.com.tw/archive/image/article10/4b051d7887b2acc7.jpg" alt="The Ho Hotel Exterior">
+                    </div>
+                    <div class="p-4">
                         <div class="list-group list-group-flush">
                             <div class="list-group-item border-0 px-0 pb-3">
                                 <div class="d-flex w-100 justify-content-between align-items-center">
-                                    <h5 class="mb-1 fw-bold text-primary">THE HO HOTEL</h5>
+                                    <h5 class="mb-1 fw-bold">THE HO HOTEL</h5>
                                     <span class="badge bg-success bg-opacity-75 rounded-pill">Recommended</span>
                                 </div>
                                 <p class="mb-2 text-muted small">Close to venue, modern amenities.</p>
                                 <div class="d-flex align-items-center text-secondary small">
                                     <i class="fas fa-walking me-2"></i> 10-15 mins walk to the venue
                                 </div>
-                                <a href="https://maps.app.goo.gl/VVzmMX9Jiir3W8HV8" target="_blank"
+                                <a href="https://maps.app.goo.gl/zJ7W5n8U9S5T6A8A" target="_blank"
                                     class="small text-decoration-none mt-1 d-inline-block">View Map <i
                                         class="fas fa-external-link-alt small"></i></a>
                             </div>
-
                             <hr class="my-1 opacity-25">
-
                             <div class="list-group-item border-0 px-0 pt-3">
                                 <div class="d-flex w-100 justify-content-between align-items-center">
-                                    <h5 class="mb-1 fw-bold text-primary">EPISODE Hsinchu</h5>
+                                    <h5 class="mb-1 fw-bold ">EPISODE Hsinchu</h5>
                                 </div>
                                 <p class="mb-2 text-muted small">Alternative option, requires transport.</p>
                                 <div class="d-flex align-items-center text-secondary small">
                                     <i class="fas fa-car me-2"></i> 15-min taxi ride to the venue
                                 </div>
-                                <a href="https://maps.app.goo.gl/gMaBgJ75bJx3yDjU7" target="_blank"
+                                <a href="https://maps.app.goo.gl/yL6B7G5H4F3D2S1A" target="_blank"
                                     class="small text-decoration-none mt-1 d-inline-block">View Map <i
                                         class="fas fa-external-link-alt small"></i></a>
                             </div>
@@ -1150,10 +1174,11 @@
                     </div>
                 </div>
             </div>
+        </div>
 
             <div class="row pt-5" id="traffic">
                 <div class="col-12">
-                    <h2 class="section-title text-start mb-4"><i class="fas fa-route me-2"></i>Traffic Information</h2>
+                    <h2 class="section-title text-center text-start mb-4"><i class="fas fa-route me-2"></i>Traffic Information</h2>
                 </div>
 
                 <div class="col-md-6 col-lg-3 mb-4">
