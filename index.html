@@ -10,518 +10,451 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        :root {
-            /* NYCU Color Palette & Theme */
-            --primary-color: #0033A0;
-            /* NYCU Deep Blue */
-            --secondary-color: #8A8D8F;
-            /* NYCU Silver */
-            --accent-color: #0dcaf0;
-            /* Cyan for 'Future' vibe highlight */
-            --light-bg: #f8f9fa;
-        }
+       :root {
+    /* 從 Banner 提取的精準色盤 */
+    --primary-color: #00529B;    /* 標題深藍色：沉穩專業 */
+    --secondary-color: #4A6785;  /* 次要藍灰色：用於輔助說明 */
+    --accent-color: #FFED00;     /* 日期標籤黃：高對比亮點 */
+    --sky-blue: #00AEEF;         /* 漸層天藍色：活力與數位感 */
+    --light-bg: #F8FDFF;         /* 極淺藍色背景 */
+    --gradient-banner: linear-gradient(135deg, #FFFDE7 0%, #E0F2F1 50%, #00AEEF 100%);
+}
+/* --- 強制覆蓋 Bootstrap 預設類別 --- */
+/* 專為 Icon 容器設計的淺色背景 */
+.icon-box-light {
+    /* 使用 Primary 顏色但手動設定 0.1 的透明度，避免被 !important 覆蓋 */
+    background-color: rgba(0, 82, 155, 0.1) !important; 
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
 
-        html {
-            scroll-behavior: smooth;
-            /* FIX: Prevents fixed navbar from covering section titles on click */
-            scroll-padding-top: 90px;
-        }
+/* 懸停效果：讓 icon 容器在滑鼠移上去時有點變化，增加互動感 */
+.icon-box-light:hover {
+    background-color: rgba(0, 82, 155, 0.15) !important;
+    transform: scale(1.05);
+}
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            color: #333;
-            background-color: #ffffff;
-            padding-top: 70px;
-            /* Offset for fixed navbar */
-        }
+/* 讓 icon 使用 Sky Blue 或 Primary 都能看得很清楚 */
+.text-info-custom {
+    color: var(--sky-blue) !important;
+}
+/* 背景色覆蓋 */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
 
-        /* TBD Highlight for Discussion */
-        .tbd-discussion {
-            background-color: #fff3cd;
-            border: 2px dashed #dc3545;
-            color: #856404;
-            position: relative;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
-        }
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+/* 標准 Info 邊框：用於強調資訊區塊 */
+.border-info {
+    border-color: var(--sky-blue) !important;
+}
+/* 標准主按鈕覆蓋 (深藍色系) */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
 
-        .tbd-discussion::after {
-            content: " (TBD)";
-            font-size: 0.7em;
-            color: #dc3545;
-            vertical-align: super;
-        }
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #003B70 !important; /* 比主色稍深，增加按壓感 */
+    border-color: #003B70 !important;
+    box-shadow: 0 4px 12px rgba(0, 82, 155, 0.3) !important;
+}
 
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #001a5a 100%);
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-            color: white;
-            overflow: hidden;
-        }
+/* 如果有用到文字顏色類別 */
+.text-primary {
+    color: var(--primary-color) !important;
+}
 
-        .hero-section .btn {
-            display: inline-flex;
-            /* 使用 flex 布局 */
-            align-items: center;
-            /* 垂直居中 */
-            justify-content: center;
-            /* 水平居中 */
-            height: 50px;
-            /* 固定高度是確保對齊最簡單的方法 */
-            padding: 0 30px;
-            /* 左右內距 */
-            border-radius: 30px;
-            /* 圓角 */
-            font-weight: 600;
-            transition: all 0.3s;
-            line-height: 1;
-            /* 將行高設為 1，避免字體基準線偏移 */
-        }
+/* 針對 Outline 樣式的按鈕也做一致化 */
+.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://www.transparenttextures.com/patterns/cubes.png');
-            opacity: 0.1;
-            z-index: 0;
-        }
+.btn-outline-primary:hover {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+html {
+    scroll-behavior: smooth;
+    /* 修正：防止固定導覽列遮擋標題 */
+    scroll-padding-top: 90px;
+}
 
-        .hero-section .container {
-            position: relative;
-            z-index: 2;
-        }
+body {
+    font-family: 'Outfit', sans-serif;
+    color: #2D3748;
+    background-color: #ffffff;
+    padding-top: 70px;
+    /* 導覽列高度偏移 */
+}
 
-        .hero-title {
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
+/* --- Hero Banner 區塊 --- */
 
-        .hero-subtitle {
-            font-weight: 500;
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #cfd1d3;
-        }
 
-        /* Section Styling */
-        section {
-            padding: 80px 0;
-        }
+.hero-banner-outer {
+    width: 100%;
+    background-color: #ffffff; 
+    padding: 20px 0;
+    margin: 0;
+    line-height: 0;
+}
 
-        .section-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+.banner-content-wrapper {
+    position: relative;
+    width: 95%;        
+    max-width: 1400px; 
+    margin: 0 auto;
+    border-radius: 20px;
+    /* 強化藍色系陰影 */
+    box-shadow: 0 20px 50px rgba(0, 82, 155, 0.12);
+}
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent-color);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
+.banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
 
-        /* Cards */
-        .info-card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            background: white;
-            overflow: hidden;
-        }
+.banner-btns-overlay {
+    position: absolute;
+    bottom: 12%; 
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
+/* --- 按鈕樣式校正 --- */
+.btn-primary-custom {
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    color: var(--primary-color);
+    height: 48px;
+    padding: 0 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 237, 0, 0.3);
+}
 
-        .date-badge {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-        }
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(0, 82, 155, 0.2);
+}
 
-        /* Program / Schedule Styling - UPDATED COLORS */
-        .nav-pills .nav-link {
-            color: var(--secondary-color);
-            font-weight: 600;
-            border-radius: 30px;
-            padding: 10px 30px;
-            margin: 0 5px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
+.btn-reg-outline {
+    border: 2px solid white !important;
+    color: white !important;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px); /* 呼應 Banner 左側透明方塊感 */
+    height: 48px;
+    padding: 0 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    text-decoration: none;
+}
 
-        .nav-pills .nav-link:hover {
-            background-color: #f0f0f0;
-            color: var(--primary-color);
-        }
+.btn-reg-outline:hover {
+    background: white !important;
+    color: var(--primary-color) !important;
+}
 
-        /* FIX: Active state colors for better visibility */
-        .nav-pills .nav-link.active {
-            background-color: var(--accent-color) !important;
-            /* Cyan background */
-            color: var(--primary-color) !important;
-            /* Dark Blue Text */
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(13, 202, 240, 0.3);
-        }
+.btn-flex-center {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    gap: 8px;
+}
 
-        .schedule-table {
-            border-collapse: separate;
-            border-spacing: 0 15px;
-            width: 100%;
-        }
+.btn-flex-center i {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+}
 
-        .schedule-row {
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
-            border-radius: 10px;
-            transition: transform 0.2s;
-        }
+/* --- 手機版響應式優化 --- */
+@media (max-width: 768px) {
+    .hero-banner-outer {
+        padding: 0;
+    }
+    .banner-content-wrapper {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .banner-img {
+        border-radius: 0;
+    }
+    .banner-btns-overlay {
+        position: relative;
+        bottom: 0;
+        transform: none;
+        left: 0;
+        padding: 20px 10px;
+        /* 背景色改為天藍到深海藍漸層，銜接圖片 */
+        background: linear-gradient(to bottom, var(--sky-blue) 0%, var(--primary-color) 100%);
+        display: flex;
+        flex-direction: row; /* 強制保持並排 */
+        justify-content: center;
+        gap: 10px;
+        margin-top: -1px;
+    }
+    .btn-primary-custom, .btn-reg-outline {
+        height: 38px; /* 縮小尺寸 */
+        padding: 0 15px;
+        font-size: 0.85rem;
+        flex: 0 1 auto;
+    }
+}
 
-        .schedule-row:hover {
-            transform: scale(1.005);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        }
+/* --- Section 樣式 --- */
+section {
+    padding: 80px 0;
+}
 
-        .time-col {
-            font-weight: 700;
-            color: var(--primary-color);
-            white-space: nowrap;
-            vertical-align: middle;
-            border-radius: 10px 0 0 10px;
-            padding: 25px !important;
-            width: 160px;
-            border-left: 5px solid var(--accent-color);
-            background-color: #fcfcfc;
-        }
+.bg-light {
+    background-color: var(--light-bg) !important;
+}
 
-        .content-col {
-            vertical-align: middle;
-            padding: 20px 25px !important;
-            border-radius: 0 10px 10px 0;
-        }
+.section-title {
+    color: var(--primary-color);
+    font-weight: 800;
+    margin-bottom: 50px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
 
-        .track-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #888;
-            margin-bottom: 8px;
-            display: block;
-            font-weight: 600;
-        }
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 5px;
+    /* 使用 Banner 的天藍漸層 */
+    background: linear-gradient(90deg, var(--sky-blue), var(--accent-color));
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
 
-        /* Topic List */
-        .topic-item {
-            border-left: 4px solid var(--accent-color);
-            padding-left: 20px;
-            margin-bottom: 25px;
-        }
+/* --- 卡片元件 --- */
+.info-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 85, 150, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    background: white;
+    overflow: hidden;
+}
 
-        .topic-item h5 {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 85, 150, 0.12);
+}
 
-        /* Navbar */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
+.date-badge {
+    background-color: var(--sky-blue);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+}
 
-        .navbar-brand {
-            font-weight: 700;
-            color: var(--primary-color) !important;
-            font-size: 1.4rem;
-        }
+/* --- 議程與標籤 --- */
+.nav-pills .nav-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px 30px;
+    margin: 0 5px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
 
-        .nav-link {
-            font-weight: 500;
-            color: #444 !important;
-            margin: 0 10px;
-        }
+.nav-pills .nav-link:hover {
+    background-color: var(--light-bg);
+    color: var(--primary-color);
+}
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--primary-color) !important;
-        }
+.nav-pills .nav-link.active {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important; 
+    font-weight: 700;
+    /* 陰影加入一點天藍色，讓深藍底看起來不沈重 */
+    box-shadow: 0 4px 12px rgba(0, 174, 239, 0.3); 
+    border: 1px solid var(--primary-color);
+}
 
-        .btn-primary-custom {
-            background-color: var(--accent-color);
-            border: none;
-            color: var(--primary-color);
-            position: relative;
-            z-index: 10;
-        }
+.schedule-table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    width: 100%;
+}
 
-        .btn-primary-custom:hover {
-            background-color: white;
-            color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-        }
+.schedule-row {
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
 
-        .btn-outline-light {
-            position: relative;
-            z-index: 10;
-        }
+.schedule-row:hover {
+    transform: scale(1.005);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
 
-        /* 針對 Registration 按鈕的額外微調 */
-        .btn-reg-outline {
-            border: 2px solid white !important;
-            /* 稍微加粗邊框增加質感 */
-            color: white !important;
-            background: transparent;
-        }
+.time-col {
+    font-weight: 700;
+    color: var(--primary-color);
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px 0 0 10px;
+    padding: 25px !important;
+    width: 160px;
+    border-left: 5px solid var(--sky-blue);
+    background-color: #fcfcfc;
+}
 
-        .btn-reg-outline:hover {
-            background: white !important;
-            color: var(--primary-color) !important;
-        }
+.content-col {
+    vertical-align: middle;
+    padding: 20px 25px !important;
+    border-radius: 0 10px 10px 0;
+}
 
-        /* 強制按鈕內容垂直置中 */
-        .btn-flex-center {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            /* 移除行高造成的偏移 */
-            gap: 8px;
-            /* 自動設定圖示與文字間的間距 */
-        }
+.topic-item {
+    border-left: 4px solid var(--sky-blue);
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
 
-        /* 確保按鈕內部的 i 標籤（Icon）沒有額外的 margin 影響位置 */
-        .btn-flex-center i {
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-            display: flex;
-            align-items: center;
-        }
+.topic-item h5 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
 
-        /* Spacing for Traffic Section */
-        #traffic {
-            scroll-margin-top: 100px;
-            /* Ensures jump doesn't hide title */
-        }
+/* --- 導覽列與頁尾 --- */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 85, 150, 0.08);
+}
 
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 60px 0;
-        }
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    font-size: 1.4rem;
+}
 
-        /* Member */
-        /* 委員會區塊容器 */
-        /* 基礎卡片樣式 */
-        .member-info-card {
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 20px;
-            padding: 20px 15px;
-            /* 這裡的 transition 是平滑移動的關鍵 */
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            height: 100%;
-            max-width: 240px;
-            margin: 0 auto;
-        }
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 60px 0;
+}
 
-        /* 滑鼠懸停 (Hover) 的動作：向上浮起並增加陰影 */
-        .member-info-card:hover {
-            transform: translateY(-8px);
-            /* 向上移動 8px */
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-            /* 增加柔和陰影 */
-            border-color: rgba(0, 85, 150, 0.2);
-            /* 邊框顏色稍微加深 */
-        }
+/* --- 委員會卡片 --- */
+.member-info-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 85, 150, 0.1);
+    border-radius: 20px;
+    padding: 20px 15px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+}
 
-        /* 如果希望照片也跟著微動，可以加這段 */
-        .member-info-card:hover .member-photo {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
+.member-info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 85, 150, 0.15);
+}
 
-        /* 調整卡片整體大小與內距 */
-        .member-info-card {
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 20px;
-            /* 圓角稍微調小更精悍 */
-            padding: 20px 15px;
-            /* 原本是 30px，縮減內距 */
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            height: 100%;
-            max-width: 240px;
-            /* 限制最大寬度防止在寬螢幕過寬 */
-            margin: 0 auto;
-        }
+.photo-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px;
+}
 
-        /* 調整照片容器尺寸 */
-        .photo-wrapper {
-            position: relative;
-            width: 110px;
-            /* 從 140px 縮小到 110px */
-            height: 110px;
-            margin: 0 auto 15px;
-        }
+.member-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    object-fit: cover;
+}
 
-        .member-photo {
-            width: 100%;
-            height: 100%;
-            border-radius: 22px;
-            /* 配合容器大小微調圓角 */
-            object-fit: cover;
-            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-        }
+.chair-tag {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color); /* 加上深藍邊框 */
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 2px 14px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
 
-        /* 讓 Chair 標籤也小一點 */
-        .chair-tag {
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #005596;
-            color: #ffffff;
-            font-size: 0.6rem;
-            /* 字體調小 */
-            font-weight: 700;
-            padding: 3px 12px;
-            border-radius: 50px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 3px 8px rgba(0, 85, 150, 0.3);
-            z-index: 2;
-        }
+.member-title {
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
 
-        /* 調整字體大小 */
-        .member-name {
-            color: #2d3436;
-            font-size: 1rem;
-            /* 從 1.15rem 縮小 */
-            margin-bottom: 3px;
-        }
-
-        .member-title {
-            color: #005596;
-            font-size: 0.75rem;
-            /* 從 0.85rem 縮小 */
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        .member-org {
-            color: #636e72;
-            font-size: 0.7rem;
-            /* 從 0.8rem 縮小 */
-        }
-
-        /* 自定義下載按鈕樣式 */
-        .btn-flyer {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            background: #ffffff;
-            padding: 8px 20px 8px 8px;
-            /* 左側留空間給圓圈 */
-            border-radius: 50px;
-            color: #005596;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border: 1px solid rgba(0, 85, 150, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .icon-circle {
-            width: 36px;
-            height: 36px;
-            background: #005596;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .btn-flyer:hover {
-            color: #005596;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 85, 150, 0.15);
-            border-color: #005596;
-        }
-
-        .btn-flyer:hover .icon-circle {
-            transform: rotate(-10deg) scale(1.1);
-        }
-
-        /* 確保在小螢幕上卡片高度能隨內容伸展 */
-        @media (max-width: 991.98px) {
-            .info-card.h-100 {
-                height: auto !important;
-                min-height: 250px;
-                /* 給予一個最小高度維持美觀，但不鎖死 */
-                margin-bottom: 20px;
-            }
-
-            /* 修正 Venue 部分在手機上的間距 */
-            .section-title.text-start {
-                text-align: center !important;
-            }
-
-            .section-title.text-start::after {
-                margin: 15px auto 0 !important;
-            }
-        }
-
-        /* 針對 Accommodation 列表的微調 */
-        .list-group-item {
-            background-color: transparent;
-        }
-        /* 地點圖片專屬樣式 */
+/* --- 場地與圖片 --- */
 .venue-image-container {
     width: 100%;
-    height: 250px; /* 固定高度維持整齊 */
+    height: 250px;
     overflow: hidden;
-    border-radius: 16px 16px 0 0; /* 僅上方圓角，銜接下方文字內容 */
+    border-radius: 16px 16px 0 0;
 }
 
 .venue-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 確保圖片填滿容器且不拉伸 */
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
 .info-card:hover .venue-image-container img {
-    transform: scale(1.05); /* 增加一點互動縮放感 */
+    transform: scale(1.05);
+}
+
+@media (max-width: 991.98px) {
+    .info-card.h-100 {
+        height: auto !important;
+        min-height: 250px;
+        margin-bottom: 20px;
+    }
 }
     </style>
 </head>
@@ -550,24 +483,18 @@
         </div>
     </nav>
 
-    <section id="home" class="hero-section d-flex align-items-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <span class="badge bg-info text-dark mb-3 px-3 py-2 rounded-pill">May 25-26, 2026</span>
-                    <h1 class="hero-title display-4">Symposium on Faculty Development for Future-Ready Teaching and
-                        Learning</h1>
-                    <p class="hero-subtitle">Human-Centered and Open Education: Teaching and Learning in a Digital World
-                    </p>
-                    <p class="lead mb-5" style="opacity: 0.9;">Join us in exploring the future of education.</p>
-                    <div class="d-flex justify-content-center gap-3">
-                        <a href="#abstracts" class="btn btn-primary-custom">Submission</a>
-                        <a href="#registration" class="btn btn-reg-outline">Registration</a>
-                    </div>
-                </div>
-            </div>
+
+
+<section id="home" class="hero-banner-outer">
+    <div class="banner-content-wrapper">
+        <img src="img/Banner.jpg" alt="Symposium on Faculty Development for Future-Ready Teaching and Learning" class="banner-img">
+        
+        <div class="banner-btns-overlay">
+            <a href="#abstracts" class="btn btn-primary-custom">Submission</a>
+            <a href="#registration" class="btn btn-reg-outline">Registration</a>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="about" class="bg-white pb-0">
         <div class="container">
@@ -822,7 +749,9 @@
                                     <tr class="schedule-row">
                                         <td class="time-col">17:00 - 18:30</td>
                                         <td class="content-col" colspan="2">
-                                            <h6 class="fw-bold mb-0 text-primary"><i class="fas fa-glass-cheers text-primary me-2"></i>Reception and Networking</h6>
+                                            <h6 class="fw-bold mb-0 text-primary"><i
+                                                    class="fas fa-glass-cheers text-primary me-2"></i>Reception and
+                                                Networking</h6>
                                         </td>
                                     </tr>
                                     <tr class="schedule-row">
@@ -1106,79 +1035,81 @@
     <section id="venue" class="bg-light">
         <div class="container">
             <div class="row g-4 mb-5">
-            <div class="col-lg-6">
-                <h2 class="section-title text-center text-start mb-4">Venue</h2>
-                <div class="info-card h-100 shadow-sm">
-                    <div class="venue-image-container">
-                        <img src="img/library.jpg" alt="NYCU Library Venue">
-                    </div>
-                    <div class="p-4 d-flex flex-column justify-content-center">
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
-                                <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
-                            </div>
-                            <div>
-                                <h4 class="mb-1 fw-bold">International Conference Hall</h4>
-                                <p class="text-muted mb-0">Guangfu Campus Library @ NYCU</p>
-                            </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title text-center text-start mb-4">Venue</h2>
+                    <div class="info-card h-100 shadow-sm">
+                        <div class="venue-image-container">
+                            <img src="img/library.jpg" alt="NYCU Library Venue">
                         </div>
-                        <div class="ps-2 border-start border-4 border-info ms-3">
-                            <p class="text-secondary ms-3 mb-1">1001 University Road, Hsinchu, Taiwan 300093</p>
-                            <p class="text-secondary ms-3 small">(國立陽明交通大學 光復校區 浩然圖書館 國際會議廳)</p>
-                        </div>
-                        <div class="mt-4 ms-3">
-                            <a href="https://maps.app.goo.gl/vL7kUa6X8N8m6mG6A" target="_blank"
-                                class="btn btn-outline-primary rounded-pill">
-                                <i class="fas fa-location-arrow me-2"></i> Open in Google Maps
-                            </a>
+                        <div class="p-4 d-flex flex-column justify-content-center">
+                            <div class="d-flex align-items-center mb-4">
+    <div class="icon-box-light rounded-circle me-3">
+        <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+    </div>
+    <div>
+        <h4 class="mb-1 fw-bold" style="color: var(--primary-color);">International Conference Hall</h4>
+        <p class="text-muted mb-0">Guangfu Campus Library @ NYCU</p>
+    </div>
+</div>
+                            <div class="ps-2 border-start border-4 border-info ms-3">
+                                <p class="text-secondary ms-3 mb-1">1001 University Road, Hsinchu, Taiwan 300093</p>
+                                <p class="text-secondary ms-3 small">(國立陽明交通大學 光復校區 浩然圖書館 國際會議廳)</p>
+                            </div>
+                            <div class="mt-4 ms-3">
+                                <a href="https://maps.app.goo.gl/vL7kUa6X8N8m6mG6A" target="_blank"
+                                    class="btn btn-outline-primary rounded-pill">
+                                    <i class="fas fa-location-arrow me-2"></i> Open in Google Maps
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-6">
-                <h2 class="section-title text-center text-start mb-4">Accommodation</h2>
-                <div class="info-card h-100 shadow-sm">
-                    <div class="venue-image-container">
-                        <img src="https://www.thehohotel.com.tw/archive/image/article10/4b051d7887b2acc7.jpg" alt="The Ho Hotel Exterior">
-                    </div>
-                    <div class="p-4">
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item border-0 px-0 pb-3">
-                                <div class="d-flex w-100 justify-content-between align-items-center">
-                                    <h5 class="mb-1 fw-bold">THE HO HOTEL</h5>
-                                    <span class="badge bg-success bg-opacity-75 rounded-pill">Recommended</span>
+                <div class="col-lg-6">
+                    <h2 class="section-title text-center text-start mb-4">Accommodation</h2>
+                    <div class="info-card h-100 shadow-sm">
+                        <div class="venue-image-container">
+                            <img src="https://www.thehohotel.com.tw/archive/image/article10/4b051d7887b2acc7.jpg"
+                                alt="The Ho Hotel Exterior">
+                        </div>
+                        <div class="p-4">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item border-0 px-0 pb-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
+                                        <h5 class="mb-1 fw-bold">THE HO HOTEL</h5>
+                                        <span class="badge bg-success bg-opacity-75 rounded-pill">Recommended</span>
+                                    </div>
+                                    <p class="mb-2 text-muted small">Close to venue, modern amenities.</p>
+                                    <div class="d-flex align-items-center text-secondary small">
+                                        <i class="fas fa-walking me-2"></i> 10-15 mins walk to the venue
+                                    </div>
+                                    <a href="https://maps.app.goo.gl/zJ7W5n8U9S5T6A8A" target="_blank"
+                                        class="small text-decoration-none mt-1 d-inline-block">View Map <i
+                                            class="fas fa-external-link-alt small"></i></a>
                                 </div>
-                                <p class="mb-2 text-muted small">Close to venue, modern amenities.</p>
-                                <div class="d-flex align-items-center text-secondary small">
-                                    <i class="fas fa-walking me-2"></i> 10-15 mins walk to the venue
+                                <hr class="my-1 opacity-25">
+                                <div class="list-group-item border-0 px-0 pt-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
+                                        <h5 class="mb-1 fw-bold ">EPISODE Hsinchu</h5>
+                                    </div>
+                                    <p class="mb-2 text-muted small">Alternative option, requires transport.</p>
+                                    <div class="d-flex align-items-center text-secondary small">
+                                        <i class="fas fa-car me-2"></i> 15-min taxi ride to the venue
+                                    </div>
+                                    <a href="https://maps.app.goo.gl/yL6B7G5H4F3D2S1A" target="_blank"
+                                        class="small text-decoration-none mt-1 d-inline-block">View Map <i
+                                            class="fas fa-external-link-alt small"></i></a>
                                 </div>
-                                <a href="https://maps.app.goo.gl/zJ7W5n8U9S5T6A8A" target="_blank"
-                                    class="small text-decoration-none mt-1 d-inline-block">View Map <i
-                                        class="fas fa-external-link-alt small"></i></a>
-                            </div>
-                            <hr class="my-1 opacity-25">
-                            <div class="list-group-item border-0 px-0 pt-3">
-                                <div class="d-flex w-100 justify-content-between align-items-center">
-                                    <h5 class="mb-1 fw-bold ">EPISODE Hsinchu</h5>
-                                </div>
-                                <p class="mb-2 text-muted small">Alternative option, requires transport.</p>
-                                <div class="d-flex align-items-center text-secondary small">
-                                    <i class="fas fa-car me-2"></i> 15-min taxi ride to the venue
-                                </div>
-                                <a href="https://maps.app.goo.gl/yL6B7G5H4F3D2S1A" target="_blank"
-                                    class="small text-decoration-none mt-1 d-inline-block">View Map <i
-                                        class="fas fa-external-link-alt small"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
             <div class="row pt-5" id="traffic">
                 <div class="col-12">
-                    <h2 class="section-title text-center text-start mb-4"><i class="fas fa-route me-2"></i>Traffic Information</h2>
+                    <h2 class="section-title text-center text-start mb-4"><i class="fas fa-route me-2"></i>Traffic
+                        Information</h2>
                 </div>
 
                 <div class="col-md-6 col-lg-3 mb-4">
@@ -1188,7 +1119,8 @@
                         <p class="small text-muted mb-2">Hsinchu Station (新竹火車站)</p>
                         <ul class="list-unstyled small mb-3">
                             <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take
-                                <strong>Hsinchu Bus No. 2</strong> directly to NYCU.</li>
+                                <strong>Hsinchu Bus No. 2</strong> directly to NYCU.
+                            </li>
                             <li><i class="fas fa-clock text-secondary me-1"></i>Bus Time: ~20-25 mins</li>
                         </ul>
                         <a href="http://www.hcbus.com.tw/big5/information-2.asp?select=2&button=%E9%80%81%E5%87%BA"
@@ -1205,9 +1137,11 @@
                         <p class="small text-muted mb-2">Hsinchu Station (高鐵新竹站)</p>
                         <ul class="list-unstyled small mb-3">
                             <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Take
-                                <strong>Kuo-Kuang Bus 182</strong>.</li>
+                                <strong>Kuo-Kuang Bus 182</strong>.
+                            </li>
                             <li class="mb-2"><i class="fas fa-chevron-right text-primary me-1 small"></i>Or take
-                                <strong>School Bus</strong> (shuttle).</li>
+                                <strong>School Bus</strong> (shuttle).
+                            </li>
                             <li><i class="fas fa-clock text-secondary me-1"></i>Travel Time: ~20-40 mins</li>
                         </ul>
                         <a href="https://www.nycu.edu.tw/userfiles/gaen/images/20241115134640873.jpg" target="_blank"
